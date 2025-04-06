@@ -406,8 +406,12 @@
             .bug-table td:first-child {
                 position: sticky;
                 left: 0;
-                background: var(--white);
+                background-color: var(--card-bg);
                 z-index: 1;
+            }
+
+            .bug-table tr:hover td:first-child {
+                background-color: #333333;
             }
 
             .footer-content {
@@ -616,6 +620,8 @@
             border-radius: 0.5rem;
             cursor: pointer;
             transition: all 0.2s ease;
+            width: 100%;
+            min-width: 0;
         }
 
         .dropdown-header:hover {
@@ -631,6 +637,8 @@
         .dropdown-header span {
             flex: 1;
             color: var(--text-color);
+            white-space: normal;
+            word-break: break-word;
         }
 
         .dropdown-header::after {
@@ -656,12 +664,15 @@
             border-radius: 0.5rem;
             max-height: 300px;
             overflow-y: auto;
+            overflow-x: hidden;
             opacity: 0;
             visibility: hidden;
             transform: translateY(-10px);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 1000;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            min-width: 0;
         }
 
         .dropdown-options.show {
@@ -703,6 +714,9 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            white-space: normal;
+            word-break: break-word;
+            width: 100%;
         }
 
         .dropdown-option:hover {
@@ -852,6 +866,15 @@
                         <div class="dropdown-option" data-value="Settings">Settings</div>
                         <div class="dropdown-option" data-value="Reports">Reports</div>
                         <div class="dropdown-option" data-value="Admin">Admin</div>
+                        <div class="dropdown-option" data-value="Set">Set</div>
+                        <div class="dropdown-option" data-value="Header">Header</div>
+                        <div class="dropdown-option" data-value="Menu">Menu</div>
+                        <div class="dropdown-option" data-value="Contact Forms">Contact Forms</div>
+                        <div class="dropdown-option" data-value="Slider">Slider</div>
+                        <div class="dropdown-option" data-value="Wishlist">Wishlist</div>
+                        <div class="dropdown-option" data-value="Cart">Cart</div>
+                        <div class="dropdown-option" data-value="Search">Search</div>
+                        <div class="dropdown-option" data-value="Footer">Footer</div>
                     </div>
                     <select id="moduleSelect" onchange="updateBugList()">
                         <option value="">Select Module</option>
@@ -862,6 +885,15 @@
                         <option value="Settings">Settings</option>
                         <option value="Reports">Reports</option>
                         <option value="Admin">Admin</option>
+                        <option value="Set">Set</option>
+                        <option value="Header">Header</option>
+                        <option value="Menu">Menu</option>
+                        <option value="Contact Forms">Contact Forms</option>
+                        <option value="Slider">Slider</option>
+                        <option value="Wishlist">Wishlist</option>
+                        <option value="Cart">Cart</option>
+                        <option value="Search">Search</option>
+                        <option value="Footer">Footer</option>
                     </select>
                 </div>
             </div>
