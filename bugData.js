@@ -9,7 +9,18 @@ const bugData = {
                 "Secure pages accessible without login",
                 "Database connection failure",
                 "Email verification not completing",
-                "Password reset links invalid"
+                "Password reset links invalid",
+                "Login attempts causing server crash",
+                "Session tokens not expiring",
+                "Critical login API outage",
+                "User locked out permanently after failed attempts",
+                "Cross-site scripting (XSS) vulnerability in login form",
+                "Brute force protection not working",
+                "Login redirects to blank page",
+                "OAuth integration failing",
+                "Login credentials exposed in logs",
+                "Session persistence across devices failing",
+                "Critical latency in login response"
             ],
             "Home": [
                 "Site crash on key action",
@@ -18,7 +29,18 @@ const bugData = {
                 "System crashing on high traffic",
                 "Site unusable due to memory leaks",
                 "Core service outages",
-                "Critical third-party integrations failing"
+                "Critical third-party integrations failing",
+                "Homepage API calls timing out",
+                "Content delivery network (CDN) failure",
+                "Server overload on page load",
+                "Critical caching failure",
+                "Home page data not syncing with backend",
+                "Site-wide permissions bypassed",
+                "Critical JavaScript execution errors",
+                "Home page stuck in loading state",
+                "Database queries crashing on load",
+                "Primary navigation links dead",
+                "Critical session data loss"
             ],
             "Dashboard": [
                 "Real-time updates not syncing",
@@ -27,7 +49,18 @@ const bugData = {
                 "Critical notifications not sending",
                 "Dashboard data not loading",
                 "API endpoints returning 403 errors",
-                "System logging disabled"
+                "System logging disabled",
+                "Widgets crashing on refresh",
+                "Critical data not rendering",
+                "User-specific settings corrupted",
+                "Dashboard API authentication failing",
+                "Real-time analytics not updating",
+                "Critical filters causing crashes",
+                "Primary dashboard controls unresponsive",
+                "Data export from dashboard failing",
+                "Server errors on widget load",
+                "Critical permissions not enforced",
+                "Dashboard layout corruption"
             ],
             "Profile": [
                 "Account deletion failing silently",
@@ -36,7 +69,17 @@ const bugData = {
                 "Profile data corruption",
                 "User roles not applying",
                 "Session timeouts locking users out",
-                "File uploads crashing server"
+                "File uploads crashing server",
+                "Profile updates causing data loss",
+                "User authentication tokens invalidated",
+                "Critical profile fields not saving",
+                "Profile API returning 500 errors",
+                "User data exposed to other accounts",
+                "Profile picture upload causing crash",
+                "Critical sync failure with backend",
+                "User settings reset to defaults",
+                "Profile access blocked unexpectedly",
+                "Data integrity checks failing"
             ],
             "Settings": [
                 "Critical settings not saving",
@@ -45,7 +88,17 @@ const bugData = {
                 "Settings update causing crashes",
                 "Multi-user conflicts corrupting data",
                 "API authentication tokens not generating",
-                "Backup restoration failing"
+                "Backup restoration failing",
+                "Settings API endpoints inaccessible",
+                "Critical permissions not saving",
+                "System-wide settings reset",
+                "Settings page crashing on save",
+                "User preferences overwritten",
+                "Critical third-party service sync failure",
+                "Settings validation bypassed",
+                "Database connection lost on update",
+                "Settings changes not logged",
+                "Critical latency in applying changes"
             ],
             "Reports": [
                 "Critical reports not generating",
@@ -54,7 +107,17 @@ const bugData = {
                 "Database queries timing out",
                 "Data migration failing completely",
                 "Server returning 500 errors on all requests",
-                "Critical data loss during export"
+                "Critical data loss during export",
+                "Report filters causing crashes",
+                "Report data not syncing with source",
+                "Critical report API failure",
+                "Generated reports corrupted",
+                "Report generation stuck in queue",
+                "Database overload on report run",
+                "Critical permissions not enforced",
+                "Report export missing key data",
+                "Server crash on large report requests",
+                "Report rendering halted unexpectedly"
             ],
             "Admin": [
                 "Admin unable to access control panel",
@@ -63,7 +126,17 @@ const bugData = {
                 "Payment gateway rejecting valid cards",
                 "Admin commands not executing",
                 "Payment refunds not processing",
-                "System locking users out randomly"
+                "System locking users out randomly",
+                "Admin API endpoints down",
+                "Critical user management failure",
+                "Payment sync with gateway failing",
+                "Admin dashboard crashing on load",
+                "Order data corruption",
+                "Critical admin permissions bypassed",
+                "Admin logs not recording actions",
+                "Bulk user actions failing",
+                "Payment retries crashing system",
+                "Admin settings not applying"
             ]
         },
         "HTML/UI": {
@@ -74,7 +147,17 @@ const bugData = {
                 "Entire site displaying blank white screen",
                 "Forms not rendering on tablets",
                 "Buttons unresponsive on all devices",
-                "Key inputs not accepting text"
+                "Key inputs not accepting text",
+                "Login page layout completely broken",
+                "Critical login elements missing",
+                "Form submission button invisible",
+                "Login modal stuck open",
+                "Text overlapping input fields",
+                "Login page not loading on mobile",
+                "Critical CSS failure",
+                "Buttons overlapping on small screens",
+                "Login spinner never resolves",
+                "Form validation messages not showing"
             ],
             "Home": [
                 "Homepage banner not displaying",
@@ -83,7 +166,17 @@ const bugData = {
                 "Page not rendering at all in any browser",
                 "Severe visual distortion on all pages",
                 "Images not loading on product pages",
-                "Site crashing on resize"
+                "Site crashing on resize",
+                "Critical content sections missing",
+                "Footer overlapping main content",
+                "Homepage stuck in infinite scroll",
+                "Navigation links not clickable",
+                "Primary CTA buttons hidden",
+                "Critical JavaScript errors on load",
+                "Homepage blank on mobile",
+                "Images replaced with broken icons",
+                "Critical animations freezing UI",
+                "Page elements misaligned severely"
             ],
             "Dashboard": [
                 "Dashboard completely blank",
@@ -92,7 +185,17 @@ const bugData = {
                 "Page elements flickering uncontrollably",
                 "Tables not rendering rows",
                 "Critical error messages not showing",
-                "UI frozen on load"
+                "UI frozen on load",
+                "Dashboard widgets not loading",
+                "Charts not rendering data",
+                "Critical filters invisible",
+                "Dashboard layout shifted off-screen",
+                "Primary controls unresponsive",
+                "Data tables overlapping",
+                "Critical icons missing",
+                "Dashboard not rendering on tablets",
+                "UI elements blocking interactions",
+                "Critical latency in UI updates"
             ],
             "Profile": [
                 "Profile picture upload broken",
@@ -101,7 +204,17 @@ const bugData = {
                 "Profile images not clickable",
                 "Fonts not loading, text invisible",
                 "Overlays blocking all clicks",
-                "CSS not loading at all"
+                "CSS not loading at all",
+                "Profile page blank on load",
+                "Critical profile fields hidden",
+                "Upload button unresponsive",
+                "Profile layout distorted",
+                "User data overlapping UI elements",
+                "Critical buttons missing",
+                "Profile not rendering on mobile",
+                "Text unreadable due to contrast",
+                "Profile sections misaligned",
+                "Critical validation errors not shown"
             ],
             "Settings": [
                 "Settings panel not loading",
@@ -110,7 +223,17 @@ const bugData = {
                 "Modal popups blocking all interactions",
                 "Buttons missing on mobile view",
                 "Text unreadable due to overlap",
-                "Site unusable on older browsers"
+                "Site unusable on older browsers",
+                "Settings form not rendering",
+                "Critical dropdowns not appearing",
+                "Save button unresponsive",
+                "Settings layout completely broken",
+                "Input fields not visible",
+                "Critical UI elements shifted",
+                "Settings page blank on tablets",
+                "Form submission stuck",
+                "Critical error messages hidden",
+                "Settings not scrollable"
             ],
             "Reports": [
                 "Report viewer broken",
@@ -119,7 +242,17 @@ const bugData = {
                 "Product listings invisible",
                 "Entire sidebar missing",
                 "Page stuck in infinite scroll loop",
-                "Images replaced with broken icons"
+                "Images replaced with broken icons",
+                "Report tables not loading",
+                "Critical report filters missing",
+                "Export button unresponsive",
+                "Report layout distorted",
+                "Data not visible on mobile",
+                "Critical UI elements overlapping",
+                "Report page blank on load",
+                "Charts flickering uncontrollably",
+                "Report controls not clickable",
+                "Critical latency in rendering"
             ],
             "Admin": [
                 "Admin panel layout broken",
@@ -128,7 +261,17 @@ const bugData = {
                 "Footer overlapping main content",
                 "Header logo not loading",
                 "Key sections blacked out",
-                "Popups not dismissible"
+                "Popups not dismissible",
+                "Admin dashboard blank",
+                "Critical user list not rendering",
+                "Action buttons unresponsive",
+                "Admin UI elements misaligned",
+                "Tables not scrollable",
+                "Critical filters not showing",
+                "Admin page not loading on mobile",
+                "Text overlapping controls",
+                "Critical icons not displaying",
+                "Admin layout crashing on resize"
             ]
         }
     },
@@ -141,7 +284,17 @@ const bugData = {
                 "OTP resend not working",
                 "User verification emails bouncing",
                 "Multi-language support failing",
-                "Session expiration too short"
+                "Session expiration too short",
+                "Login form submissions timing out",
+                "Third-party login failing intermittently",
+                "User logout not redirecting properly",
+                "Login API rate limits blocking users",
+                "Duplicate account creation allowed",
+                "Login attempts not logged",
+                "Session persistence issues",
+                "Critical login latency",
+                "Email verification links expiring early",
+                "Login redirects failing"
             ],
             "Home": [
                 "Important forms not submitting",
@@ -150,7 +303,17 @@ const bugData = {
                 "Cart discounts not applying",
                 "Filters resetting on refresh",
                 "Sorting not persisting",
-                "Notifications stuck in queue"
+                "Notifications stuck in queue",
+                "Home page API calls dropping",
+                "Content not syncing with backend",
+                "Search results delayed",
+                "Critical third-party widget failure",
+                "Form validation too strict",
+                "Homepage data not updating",
+                "User preferences not loading",
+                "Critical latency in page load",
+                "Navigation links not syncing",
+                "Home page stuck in partial load"
             ],
             "Dashboard": [
                 "Role-based access issues",
@@ -159,7 +322,17 @@ const bugData = {
                 "User settings reset randomly",
                 "Form submissions timing out",
                 "Data sync lagging",
-                "Notifications not syncing"
+                "Notifications not syncing",
+                "Dashboard widgets not updating",
+                "Analytics events delayed",
+                "Critical filters not applying",
+                "Dashboard API responses missing fields",
+                "User invites not sending",
+                "Dashboard data not refreshing",
+                "Permissions not updating instantly",
+                "Sorting not persisting",
+                "Critical latency in widget load",
+                "Dashboard controls not responding"
             ],
             "Profile": [
                 "Broken API on critical pages",
@@ -168,7 +341,17 @@ const bugData = {
                 "Comments not posting",
                 "Profile edits not syncing",
                 "User preferences not saving",
-                "Profile updates delayed"
+                "Profile updates delayed",
+                "User bans not enforcing",
+                "Permissions not reflecting changes",
+                "Profile API calls intermittent",
+                "Critical profile data not loading",
+                "User roles not updating",
+                "Profile fields resetting",
+                "File upload stuck in queue",
+                "Comment posting delayed",
+                "Profile sync with backend failing",
+                "User settings not persisting"
             ],
             "Settings": [
                 "Payment gateway timeout errors",
@@ -177,7 +360,17 @@ const bugData = {
                 "API rate limits blocking users",
                 "Order history not loading",
                 "Email notifications delayed",
-                "Settings not applying immediately"
+                "Settings not applying immediately",
+                "Important forms not validating",
+                "Settings API dropping requests",
+                "Critical settings not syncing",
+                "User preferences reset on save",
+                "Settings changes not logged",
+                "Third-party integrations lagging",
+                "Settings page stuck in loading",
+                "Critical latency in applying changes",
+                "Form submissions not processed",
+                "Settings not persisting across sessions"
             ],
             "Reports": [
                 "User bans not enforcing",
@@ -186,7 +379,17 @@ const bugData = {
                 "File downloads incomplete",
                 "Permissions not updating",
                 "Admin reports incomplete",
-                "Report generation slow"
+                "Report generation slow",
+                "Data exports missing columns",
+                "Report filters not applying",
+                "Critical report data delayed",
+                "Report API calls failing",
+                "Generated reports not downloading",
+                "Report sync with source lagging",
+                "File export stuck in queue",
+                "Report rendering delayed",
+                "Critical latency in report load",
+                "Report permissions not enforced"
             ],
             "Admin": [
                 "Payment status not updating",
@@ -195,7 +398,17 @@ const bugData = {
                 "User deletion not logged",
                 "API calls dropping intermittently",
                 "Checkout stuck on validation",
-                "Admin actions not logged"
+                "Admin actions not logged",
+                "Payment retries failing",
+                "Admin dashboard data delayed",
+                "Critical admin controls not working",
+                "User management API failing",
+                "Bulk actions not processing",
+                "Admin settings not syncing",
+                "Order data not updating",
+                "Critical latency in admin load",
+                "Admin permissions not applying",
+                "Admin reports not generating"
             ]
         },
         "HTML/UI": {
@@ -206,7 +419,17 @@ const bugData = {
                 "Cross-browser layout mismatch",
                 "Dropdown menus not expanding",
                 "Form fields misaligned on mobile",
-                "Key images stretched or distorted"
+                "Key images stretched or distorted",
+                "Buttons unresponsive on touch",
+                "Login form not scrollable",
+                "Text overlapping inputs",
+                "Critical form elements misaligned",
+                "Login page not scaling on tablets",
+                "Buttons too small on mobile",
+                "Input fields not accepting focus",
+                "Login modal not closing",
+                "Critical latency in UI load",
+                "Form validation not visible"
             ],
             "Home": [
                 "Buttons unresponsive on touch devices",
@@ -215,7 +438,17 @@ const bugData = {
                 "Text truncated on tablets",
                 "Navigation bar overlapping content",
                 "Images not resizing properly",
-                "Buttons too small on mobile"
+                "Buttons too small on mobile",
+                "Footer links not clickable",
+                "Home page layout shifting",
+                "Critical content not visible",
+                "Navigation menu misaligned",
+                "Images loading slowly",
+                "Popups blocking interactions",
+                "Homepage not rendering on Edge",
+                "Text overlapping images",
+                "Critical UI elements not scaling",
+                "Home page stuck in partial load"
             ],
             "Dashboard": [
                 "Footer links not clickable",
@@ -224,7 +457,17 @@ const bugData = {
                 "Profile page layout broken",
                 "Tables not scrollable on mobile",
                 "Input fields overlapping labels",
-                "Hover effects not working"
+                "Hover effects not working",
+                "Dashboard widgets misaligned",
+                "Charts not scaling properly",
+                "Critical filters not visible",
+                "Dashboard layout not responsive",
+                "Tables overlapping content",
+                "Search bar not expanding",
+                "Widgets not rendering on tablets",
+                "Critical UI elements hidden",
+                "Dashboard not scrollable",
+                "Hover states inconsistent"
             ],
             "Profile": [
                 "Images loading slowly",
@@ -233,7 +476,17 @@ const bugData = {
                 "Fonts too small on mobile",
                 "Buttons shifting on click",
                 "Popups too large for screen",
-                "Form labels not aligned"
+                "Form labels not aligned",
+                "Profile images distorted",
+                "Text not wrapping properly",
+                "Critical profile fields misaligned",
+                "Profile page not scaling",
+                "Images not centered",
+                "Buttons not visible on scroll",
+                "Profile layout shifting",
+                "Critical UI elements overlapping",
+                "Profile not rendering on Safari",
+                "Text contrast too low"
             ],
             "Settings": [
                 "Product cards misaligned",
@@ -242,7 +495,17 @@ const bugData = {
                 "Images not centered",
                 "Dropdowns cut off by edges",
                 "Text not wrapping properly",
-                "Buttons not styled on Safari"
+                "Buttons not styled on Safari",
+                "Footer pushed off-screen",
+                "Modal backgrounds not dimming",
+                "Input fields too wide",
+                "Navigation icons misaligned",
+                "Settings form not responsive",
+                "Critical settings options hidden",
+                "Save button not clickable",
+                "Settings layout not scaling",
+                "Text overlapping controls",
+                "Critical latency in UI updates"
             ],
             "Reports": [
                 "Footer pushed off-screen",
@@ -251,7 +514,17 @@ const bugData = {
                 "Navigation icons misaligned",
                 "Tables breaking layout",
                 "Images not loading on Edge",
-                "Form buttons overlapping"
+                "Form buttons overlapping",
+                "Report tables not scaling",
+                "Critical report data hidden",
+                "Export button misaligned",
+                "Report layout not responsive",
+                "Charts not visible on mobile",
+                "Critical filters misaligned",
+                "Report page not scrollable",
+                "Text overlapping charts",
+                "Critical UI elements not rendering",
+                "Report controls not visible"
             ],
             "Admin": [
                 "Content shifting on load",
@@ -260,7 +533,17 @@ const bugData = {
                 "Buttons not visible on scroll",
                 "Text overlapping images",
                 "Popups not centered",
-                "Header not sticky on scroll"
+                "Header not sticky on scroll",
+                "Admin dashboard not responsive",
+                "User list not scaling",
+                "Critical admin controls hidden",
+                "Tables not rendering properly",
+                "Admin layout shifting",
+                "Action buttons misaligned",
+                "Critical UI elements overlapping",
+                "Admin page not loading on tablets",
+                "Text contrast too low",
+                "Admin controls not clickable"
             ]
         }
     },
@@ -273,61 +556,133 @@ const bugData = {
                 "Pagination issues",
                 "User preferences not saving correctly",
                 "Incorrect timezone handling",
-                "Partial data loss in multi-step forms"
-            ],
-            "Home": [
+                "Partial data loss in multi-step forms",
                 "Rate limiting not enforced properly",
                 "Notifications not triggering on events",
                 "Analytics tracking missing key actions",
                 "Comments not displaying in order",
                 "File previews not loading",
                 "Search suggestions outdated",
-                "Form autofill not working"
-            ],
-            "Dashboard": [
+                "Form autofill not working",
                 "User activity logs incomplete",
+                "Login form submissions slow",
+                "Sorting resets on refresh",
+                "Filters not persisting"
+            ],
+            "Home": [
                 "Sorting resets on page change",
                 "Filters not saving",
                 "Pagination skipping pages",
                 "Email links not tracking",
                 "Data export missing columns",
-                "Profile updates delayed"
-            ],
-            "Profile": [
+                "Profile updates delayed",
                 "Search case sensitivity issues",
                 "Notifications duplicating",
                 "User tags not applying",
                 "Form submissions slow",
                 "Analytics delayed",
                 "File uploads stuck in queue",
-                "Sorting not alphabetical"
+                "Sorting not alphabetical",
+                "Home page API calls lagging",
+                "Content not refreshing",
+                "Search filters not clearing",
+                "Critical latency in updates",
+                "Home page data inconsistent"
             ],
-            "Settings": [
+            "Dashboard": [
                 "Filters overlapping results",
                 "Pagination not resetting",
                 "Comments not editable",
                 "Search not highlighting terms",
                 "User roles partially applied",
                 "Notifications not clearing",
-                "Data imports missing rows"
-            ],
-            "Reports": [
+                "Data imports missing rows",
                 "Profile fields not validating",
                 "Search not filtering by date",
                 "File downloads slow",
                 "Sorting by relevance broken",
-                "Filters not clearing",
-                "Pagination buttons unresponsive",
-                "User preferences resetting"
+                "Dashboard widgets not refreshing",
+                "Analytics events inconsistent",
+                "Critical filters not persisting",
+                "Dashboard data delayed",
+                "User preferences resetting",
+                "Dashboard API calls inconsistent"
             ],
-            "Admin": [
+            "Profile": [
                 "Comments not syncing",
                 "Search not handling special characters",
                 "Notifications not prioritized",
                 "Data exports misformatted",
                 "Profile updates not logged",
                 "Search results inconsistent",
-                "Filters not applying to all data"
+                "Filters not applying to all data",
+                "Pagination misaligned with results",
+                "User activity logs not detailed",
+                "Profile API calls slow",
+                "Critical profile data not syncing",
+                "User tags not refreshing",
+                "File uploads delayed",
+                "Comments not ordered properly",
+                "Profile settings not applying",
+                "Search autocomplete inconsistent",
+                "Profile fields not refreshing"
+            ],
+            "Settings": [
+                "Incorrect validation messages",
+                "Search returning stale data",
+                "Sorting not functioning consistently",
+                "Pagination issues on settings",
+                "User preferences not syncing",
+                "Incorrect timezone display",
+                "Partial settings loss on save",
+                "Rate limits not enforced",
+                "Notifications delayed",
+                "Analytics missing minor events",
+                "Settings API calls slow",
+                "Critical settings not persisting",
+                "Form submissions lagging",
+                "Settings not refreshing",
+                "Filters not applying correctly",
+                "Pagination not aligned",
+                "Settings changes not logged"
+            ],
+            "Reports": [
+                "Report filters not saving",
+                "Pagination skipping entries",
+                "Email links not logging",
+                "Data export missing fields",
+                "Report updates delayed",
+                "Search case sensitivity issues",
+                "Notifications duplicating",
+                "Report tags not applying",
+                "Form submissions slow",
+                "Analytics delayed",
+                "File uploads stuck",
+                "Sorting not alphabetical",
+                "Filters overlapping results",
+                "Pagination not resetting",
+                "Report data inconsistent",
+                "Critical latency in report load",
+                "Report fields not validating"
+            ],
+            "Admin": [
+                "Admin actions not logged",
+                "User roles not syncing",
+                "Notifications not clearing",
+                "Data imports missing rows",
+                "Admin fields not validating",
+                "Search not filtering by date",
+                "File downloads slow",
+                "Sorting by relevance broken",
+                "Filters not clearing",
+                "Pagination buttons unresponsive",
+                "User preferences resetting",
+                "Admin API calls lagging",
+                "Critical admin data delayed",
+                "Admin settings not persisting",
+                "Search results inconsistent",
+                "Filters not applying fully",
+                "Admin controls not refreshing"
             ]
         },
         "HTML/UI": {
@@ -338,61 +693,131 @@ const bugData = {
                 "Broken hover/click effects on secondary elements",
                 "Images slightly cropped on certain resolutions",
                 "Tooltips not appearing on hover",
-                "Table columns misaligned"
-            ],
-            "Home": [
+                "Table columns misaligned",
                 "Secondary navigation lagging",
                 "Input fields not highlighting on focus",
                 "Minor layout shift during page load",
                 "Buttons too close together",
                 "Text slightly blurry",
                 "Icons not centered",
-                "Dropdowns slow to open"
-            ],
-            "Dashboard": [
+                "Dropdowns slow to open",
                 "Images not sharp",
                 "Hover states delayed",
+                "Login form not scaling"
+            ],
+            "Home": [
                 "Tables not resizing",
                 "Buttons not uniform",
                 "Fonts inconsistent across pages",
                 "Tooltips overlapping",
-                "Images slightly off-center"
-            ],
-            "Profile": [
+                "Images slightly off-center",
                 "Navigation links misaligned",
                 "Input borders faint",
                 "Buttons flickering on hover",
                 "Tables not bordered",
                 "Dropdowns not styled",
                 "Images loading out of order",
-                "Hover effects inconsistent"
-            ],
-            "Settings": [
+                "Hover effects inconsistent",
                 "Text not bold where expected",
                 "Tooltips too small",
                 "Buttons not padded evenly",
+                "Home page layout shifting",
+                "Critical UI elements misaligned"
+            ],
+            "Dashboard": [
                 "Navigation bar slightly off",
                 "Input fields not styled",
                 "Tables overlapping text",
-                "Images not aligned with text"
-            ],
-            "Reports": [
+                "Images not aligned with text",
                 "Dropdowns not closing",
                 "Buttons not highlighted",
                 "Fonts not matching design",
                 "Tooltips not positioned",
                 "Navigation links too small",
                 "Input fields misaligned",
-                "Tables not scrollable"
+                "Tables not scrollable",
+                "Images slightly pixelated",
+                "Hover effects missing",
+                "Text not spaced evenly",
+                "Dashboard widgets not scaling",
+                "Critical filters misaligned",
+                "Dashboard layout inconsistent"
+            ],
+            "Profile": [
+                "Buttons not clickable on edges",
+                "Dropdowns overlapping content",
+                "Navigation bar not uniform",
+                "Input fields too narrow",
+                "Tables not styled consistently",
+                "Button alignment inconsistent",
+                "Fonts not loading correctly",
+                "Broken hover effects",
+                "Images cropped on mobile",
+                "Tooltips not showing",
+                "Table columns not aligned",
+                "Profile layout not responsive",
+                "Critical profile fields misaligned",
+                "Input fields not focused",
+                "Minor layout shifts",
+                "Buttons too close",
+                "Text slightly distorted"
+            ],
+            "Settings": [
+                "Secondary navigation slow",
+                "Input fields not highlighted",
+                "Minor layout shifts",
+                "Buttons too close together",
+                "Text slightly blurry",
+                "Icons not centered properly",
+                "Dropdowns slow to respond",
+                "Images not sharp",
+                "Hover states inconsistent",
+                "Tables not resizing properly",
+                "Buttons not uniform",
+                "Fonts inconsistent",
+                "Tooltips overlapping content",
+                "Images slightly off-center",
+                "Settings form not scaling",
+                "Critical settings misaligned",
+                "Settings layout not responsive"
+            ],
+            "Reports": [
+                "Navigation links misaligned",
+                "Input borders faint",
+                "Buttons flickering",
+                "Tables not bordered",
+                "Dropdowns not styled properly",
+                "Images loading out of order",
+                "Hover effects inconsistent",
+                "Text not bold",
+                "Tooltips too small",
+                "Buttons not padded",
+                "Navigation bar slightly off",
+                "Input fields not styled",
+                "Tables overlapping",
+                "Report layout not scaling",
+                "Critical report fields misaligned",
+                "Report tables not responsive",
+                "Images slightly pixelated"
             ],
             "Admin": [
-                "Images slightly pixelated",
                 "Hover effects missing",
                 "Text not spaced evenly",
                 "Buttons not clickable on edges",
                 "Dropdowns overlapping content",
                 "Navigation bar not uniform",
-                "Input fields too narrow"
+                "Input fields too narrow",
+                "Tables not styled consistently",
+                "Button alignment issues",
+                "Fonts not loading",
+                "Broken hover effects",
+                "Images cropped",
+                "Tooltips not appearing",
+                "Admin layout not responsive",
+                "Critical admin controls misaligned",
+                "Table columns misaligned",
+                "Admin UI elements not scaling",
+                "Minor layout shifts"
             ]
         }
     },
@@ -405,61 +830,132 @@ const bugData = {
                 "Delays in data loading (non-blocking)",
                 "Incorrect default sorting on lists",
                 "Minor caching issues on refresh",
-                "Background sync failing intermittently"
-            ],
-            "Home": [
+                "Background sync failing intermittently",
                 "Optional fields marked as required",
                 "Incorrect log timestamps",
                 "API rate limit warnings without impact",
                 "User preferences not syncing",
                 "Search history not saving",
                 "Notifications delayed slightly",
-                "Form submissions not logged"
-            ],
-            "Dashboard": [
-                "Data exports slow",
-                "Profile updates not immediate",
+                "Form submissions not logged",
                 "Comments not timestamped",
+                "Login API calls slightly delayed",
+                "Sorting not persisting"
+            ],
+            "Home": [
                 "Search not saving filters",
                 "Sorting not defaulting",
                 "File uploads not previewed",
-                "Analytics slightly off"
-            ],
-            "Profile": [
+                "Analytics slightly off",
                 "User roles not refreshed",
                 "Notifications not grouped",
                 "Data imports not logged",
                 "Profile fields not cleared",
                 "Search not caching results",
                 "File downloads not tracked",
-                "Sorting not saved"
-            ],
-            "Settings": [
+                "Sorting not saved",
                 "Filters not highlighted",
                 "Pagination not smooth",
+                "Home page data slightly delayed",
+                "Content not refreshing timely",
+                "Search filters not persisting",
+                "Minor latency in updates"
+            ],
+            "Dashboard": [
                 "Comments not formatted",
-                "Search not prioritizing",
+                "Search11Search not prioritizing",
                 "User tags not synced",
                 "Notifications not dismissible",
-                "Data exports not zipped"
-            ],
-            "Reports": [
+                "Data exports not zipped",
                 "Profile edits not previewed",
                 "Search not auto-correcting",
                 "File uploads not prioritized",
                 "Sorting not customizable",
                 "Filters not searchable",
                 "Pagination not styled",
-                "User preferences not logged"
+                "User preferences not logged",
+                "Dashboard widgets slightly delayed",
+                "Analytics events slightly off",
+                "Dashboard data not refreshing timely",
+                "Critical filters not persisting",
+                "Dashboard controls not syncing",
+                "Minor latency in widget updates"
             ],
-            "Admin": [
+            "Profile": [
                 "Comments not searchable",
                 "Search not handling spaces",
                 "Notifications not timed",
                 "Data exports not named",
                 "Profile updates not notified",
                 "Search results not paginated",
-                "Filters not defaulted"
+                "Filters not defaulted",
+                "Pagination not responsive",
+                "User activity logs not detailed",
+                "Profile API calls slightly slow",
+                "Profile data not refreshing",
+                "User tags not applying timely",
+                "File uploads not previewing",
+                "Comments not ordered",
+                "Profile settings not syncing",
+                "Minor latency in profile load",
+                "Profile fields not persisting"
+            ],
+            "Settings": [
+                "Incorrect validation messages",
+                "Search returning stale data",
+                "Sorting not functioning consistently",
+                "Pagination issues on settings",
+                "User preferences not syncing",
+                "Incorrect timezone display",
+                "Partial settings loss on save",
+                "Rate limits not enforced",
+                "Notifications delayed",
+                "Analytics missing minor events",
+                "Settings API calls slow",
+                "Settings not refreshing",
+                "Filters not applying correctly",
+                "Pagination not aligned",
+                "Settings changes not logged",
+                "Minor latency in settings load",
+                "Settings not persisting timely"
+            ],
+            "Reports": [
+                "Report filters not saving",
+                "Pagination skipping entries",
+                "Email links not logging",
+                "Data export missing fields",
+                "Report updates delayed",
+                "Search case sensitivity issues",
+                "Notifications duplicating",
+                "Report tags not applying",
+                "Form submissions slow",
+                "Analytics delayed",
+                "File uploads stuck",
+                "Sorting not alphabetical",
+                "Filters overlapping results",
+                "Pagination not resetting",
+                "Report data inconsistent",
+                "Minor latency in report load",
+                "Report fields not refreshing"
+            ],
+            "Admin": [
+                "Admin actions not logged",
+                "User roles not syncing",
+                "Notifications not clearing",
+                "Data imports missing rows",
+                "Admin fields not validating",
+                "Search not filtering by date",
+                "File downloads slow",
+                "Sorting by relevance broken",
+                "Filters not clearing",
+                "Pagination buttons unresponsive",
+                "User preferences resetting",
+                "Admin API calls lagging",
+                "Admin data slightly delayed",
+                "Admin settings not persisting",
+                "Search results inconsistent",
+                "Filters not applying fully",
+                "Minor latency in admin load"
             ]
         },
         "HTML/UI": {
@@ -470,52 +966,112 @@ const bugData = {
                 "Animation glitches (non-critical)",
                 "Slight color mismatch",
                 "Subtle flickering on page transitions",
-                "Unstyled fallback font briefly visible"
-            ],
-            "Home": [
+                "Unstyled fallback font briefly visible",
                 "Misaligned social media icons",
                 "Hover states inconsistent on minor buttons",
                 "Small text overflow in edge cases",
                 "Buttons slightly off-center",
                 "Text not aligned with icons",
                 "Icons not sharp",
-                "Dropdowns slightly delayed"
-            ],
-            "Dashboard": [
+                "Dropdowns slightly delayed",
                 "Images not optimized",
                 "Hover effects faint",
+                "Login form slightly misaligned"
+            ],
+            "Home": [
                 "Tables slightly misaligned",
                 "Buttons not rounded",
                 "Fonts slightly off",
                 "Tooltips not styled",
-                "Images not flush"
-            ],
-            "Profile": [
+                "Images not flush",
                 "Navigation links not spaced",
                 "Input fields not padded",
                 "Buttons not shadowed",
                 "Tables not padded",
                 "Dropdowns not highlighted",
                 "Images not captioned",
-                "Hover effects not smooth"
-            ],
-            "Settings": [
+                "Hover effects not smooth",
                 "Text not italicized",
                 "Tooltips not aligned",
                 "Buttons not spaced",
+                "Home page layout slightly off",
+                "Minor UI inconsistencies"
+            ],
+            "Dashboard": [
                 "Navigation bar not padded",
                 "Input fields not bordered",
                 "Tables not centered",
-                "Images not sized"
-            ],
-            "Reports": [
+                "Images not sized",
                 "Dropdowns not shadowed",
                 "Buttons not bold",
                 "Fonts not uniform",
                 "Tooltips not timed",
                 "Navigation links not underlined",
                 "Input fields not highlighted",
-                "Tables not spaced"
+                "Tables not spaced",
+                "Images not responsive",
+                "Hover effects not timed",
+                "Text not justified",
+                "Dashboard widgets slightly misaligned",
+                "Critical filters slightly off",
+                "Minor layout inconsistencies"
+            ],
+            "Profile": [
+                "Buttons not aligned with text",
+                "Dropdowns not padded",
+                "Navigation bar not styled",
+                "Input fields not sized",
+                "Tables not highlighted",
+                "Minor spacing issues",
+                "Placeholder text missing",
+                "Broken minor icons",
+                "Animation glitches (non-critical)",
+                "Slight color mismatch",
+                "Subtle flickering on transitions",
+                "Profile layout slightly off",
+                "Hover states inconsistent",
+                "Small text overflow",
+                "Buttons slightly off-center",
+                "Text not aligned",
+                "Icons not sharp"
+            ],
+            "Settings": [
+                "Dropdowns slightly delayed",
+                "Images not optimized",
+                "Hover effects faint",
+                "Tables slightly misaligned",
+                "Buttons not rounded",
+                "Fonts slightly off",
+                "Tooltips not styled",
+                "Images not flush",
+                "Navigation links not spaced",
+                "Input fields not padded",
+                "Buttons not shadowed",
+                "Tables not padded",
+                "Dropdowns not highlighted",
+                "Images not captioned",
+                "Settings layout slightly off",
+                "Minor UI inconsistencies",
+                "Text not italicized"
+            ],
+            "Reports": [
+                "Tooltips not aligned",
+                "Buttons not spaced",
+                "Navigation bar not padded",
+                "Input fields not bordered",
+                "Tables not centered",
+                "Images not sized",
+                "Dropdowns not shadowed",
+                "Buttons not bold",
+                "Fonts not uniform",
+                "Tooltips not timed",
+                "Navigation links not underlined",
+                "Input fields not highlighted",
+                "Tables not spaced",
+                "Report layout slightly off",
+                "Hover effects not smooth",
+                "Minor UI inconsistencies",
+                "Text not justified"
             ],
             "Admin": [
                 "Images not responsive",
@@ -524,7 +1080,17 @@ const bugData = {
                 "Buttons not aligned with text",
                 "Dropdowns not padded",
                 "Navigation bar not styled",
-                "Input fields not sized"
+                "Input fields not sized",
+                "Tables not highlighted",
+                "Minor spacing issues",
+                "Placeholder text missing",
+                "Broken minor icons",
+                "Animation glitches",
+                "Slight color mismatch",
+                "Admin layout slightly off",
+                "Hover states inconsistent",
+                "Small text overflow",
+                "Buttons slightly off-center"
             ]
         }
     },
@@ -537,61 +1103,131 @@ const bugData = {
                 "Deprecated API usage",
                 "Unhandled exceptions in non-critical scripts",
                 "Incorrect sorting in archived data",
-                "Debug messages visible in production"
-            ],
-            "Home": [
+                "Debug messages visible in production",
                 "Minor rounding errors in calculations",
                 "Unoptimized database queries (no impact)",
                 "Feature flags not toggling off properly",
                 "User preferences not logged",
                 "Search history not cleared",
                 "Notifications not formatted",
-                "Form submissions not tracked"
-            ],
-            "Dashboard": [
-                "Data exports not optimized",
-                "Profile updates not timestamped",
+                "Form submissions not tracked",
                 "Comments not archived",
-                "Search not logging queries",
-                "Sorting not logged",
-                "File uploads not logged",
-                "Analytics not detailed"
+                "Login API calls not optimized",
+                "Sorting not logged"
             ],
-            "Profile": [
+            "Home": [
+                "Search not logging queries",
+                "Sorting not tracked",
+                "File uploads not logged",
+                "Analytics not detailed",
                 "User roles not logged",
                 "Notifications not logged",
                 "Data imports not tracked",
                 "Profile fields not logged",
                 "Search not optimized",
                 "File downloads not logged",
-                "Sorting not tracked"
-            ],
-            "Settings": [
+                "Sorting not optimized",
                 "Filters not logged",
                 "Pagination not logged",
                 "Comments not logged",
+                "Home page data not tracked",
+                "Minor latency in updates",
+                "Content not logged"
+            ],
+            "Dashboard": [
                 "Search not tracked",
                 "User tags not logged",
                 "Notifications not tracked",
-                "Data exports not tracked"
-            ],
-            "Reports": [
+                "Data exports not tracked",
                 "Profile edits not tracked",
                 "Search not logged",
                 "File uploads not tracked",
                 "Sorting not optimized",
                 "Filters not tracked",
                 "Pagination not tracked",
-                "User preferences not tracked"
-            ],
-            "Admin": [
+                "User preferences not tracked",
                 "Comments not tracked",
+                "Dashboard widgets not logged",
+                "Analytics not fully tracked",
+                "Dashboard data not optimized",
+                "Minor latency in widget load",
+                "Critical filters not logged"
+            ],
+            "Profile": [
                 "Search not optimized",
                 "Notifications not optimized",
                 "Data exports not optimized",
                 "Profile updates not optimized",
                 "Search results not optimized",
-                "Filters not optimized"
+                "Filters not optimized",
+                "Pagination not optimized",
+                "User activity logs not optimized",
+                "Profile API calls not tracked",
+                "Profile data not logged",
+                "User tags not tracked",
+                "File uploads not optimized",
+                "Comments not tracked",
+                "Profile settings not logged",
+                "Minor latency in profile load",
+                "Profile fields not optimized",
+                "Search not fully tracked"
+            ],
+            "Settings": [
+                "Incorrect validation messages",
+                "Search returning stale data",
+                "Sorting not logged",
+                "Pagination issues on settings",
+                "User preferences not tracked",
+                "Incorrect timezone display",
+                "Partial settings loss on save",
+                "Rate limits not logged",
+                "Notifications not tracked",
+                "Analytics missing minor events",
+                "Settings API calls not optimized",
+                "Settings not logged",
+                "Filters not tracked",
+                "Pagination not optimized",
+                "Settings changes not tracked",
+                "Minor latency in settings load",
+                "Settings not fully optimized"
+            ],
+            "Reports": [
+                "Report filters not logged",
+                "Pagination skipping entries",
+                "Email links not tracked",
+                "Data export not optimized",
+                "Report updates not logged",
+                "Search case sensitivity issues",
+                "Notifications not optimized",
+                "Report tags not tracked",
+                "Form submissions not tracked",
+                "Analytics not fully logged",
+                "File uploads not optimized",
+                "Sorting not tracked",
+                "Filters not optimized",
+                "Pagination not logged",
+                "Report data not tracked",
+                "Minor latency in report load",
+                "Report fields not optimized"
+            ],
+            "Admin": [
+                "Admin actions not optimized",
+                "User roles not tracked",
+                "Notifications not logged",
+                "Data imports not optimized",
+                "Admin fields not logged",
+                "Search not tracked",
+                "File downloads not optimized",
+                "Sorting by relevance not logged",
+                "Filters not tracked",
+                "Pagination buttons not tracked",
+                "User preferences not optimized",
+                "Admin API calls not logged",
+                "Admin data not tracked",
+                "Admin settings not optimized",
+                "Search results not logged",
+                "Filters not fully tracked",
+                "Minor latency in admin load"
             ]
         },
         "HTML/UI": {
@@ -602,62 +1238,132 @@ const bugData = {
                 "Text capitalization/formatting issues",
                 "Favicon not updating in some browsers",
                 "Slight shadow misalignment",
-                "Unintended line breaks in long text"
-            ],
-            "Home": [
+                "Unintended line breaks in long text",
                 "Cursor style inconsistency",
                 "Minor z-index layering issues",
                 "Subtle gradient rendering differences",
                 "Buttons not perfectly round",
                 "Text not perfectly centered",
                 "Icons not perfectly sized",
-                "Dropdowns not perfectly aligned"
-            ],
-            "Dashboard": [
+                "Dropdowns not perfectly aligned",
                 "Images not perfectly sharp",
                 "Hover effects not perfect",
+                "Login form not perfectly aligned"
+            ],
+            "Home": [
                 "Tables not perfectly spaced",
                 "Buttons not perfectly padded",
                 "Fonts not perfectly matched",
                 "Tooltips not perfectly positioned",
-                "Images not perfectly aligned"
-            ],
-            "Profile": [
+                "Images not perfectly aligned",
                 "Navigation links not perfectly spaced",
                 "Input fields not perfectly styled",
                 "Buttons not perfectly shadowed",
                 "Tables not perfectly bordered",
                 "Dropdowns not perfectly styled",
                 "Images not perfectly captioned",
-                "Hover effects not perfectly timed"
-            ],
-            "Settings": [
+                "Hover effects not perfectly timed",
                 "Text not perfectly formatted",
                 "Tooltips not perfectly sized",
                 "Buttons not perfectly spaced",
+                "Home page layout not perfect",
+                "Minor UI inconsistencies"
+            ],
+            "Dashboard": [
                 "Navigation bar not perfectly padded",
                 "Input fields not perfectly bordered",
                 "Tables not perfectly centered",
-                "Images not perfectly sized"
-            ],
-            "Reports": [
+                "Images not perfectly sized",
                 "Dropdowns not perfectly shadowed",
                 "Buttons not perfectly bold",
                 "Fonts not perfectly uniform",
                 "Tooltips not perfectly timed",
                 "Navigation links not perfectly underlined",
                 "Input fields not perfectly highlighted",
-                "Tables not perfectly padded"
+                "Tables not perfectly padded",
+                "Images not perfectly responsive",
+                "Hover effects not perfectly smooth",
+                "Text not perfectly justified",
+                "Dashboard widgets not perfect",
+                "Critical filters not perfectly aligned",
+                "Minor UI inconsistencies"
+            ],
+            "Profile": [
+                "Buttons not perfectly aligned",
+                "Dropdowns not perfectly padded",
+                "Navigation bar not perfectly styled",
+                "Input fields not perfectly sized",
+                "Tables not perfectly highlighted",
+                "Pixel-perfect issues",
+                "Scrollbar design mismatch",
+                "Padding/margin inconsistency",
+                "Text capitalization issues",
+                "Favicon not updating",
+                "Slight shadow misalignment",
+                "Profile layout not perfect",
+                "Hover effects not perfect",
+                "Text not perfectly centered",
+                "Icons not perfectly sized",
+                "Dropdowns not perfectly aligned",
+                "Images not perfectly sharp"
+            ],
+            "Settings": [
+                "Unintended line breaks",
+                "Cursor style inconsistency",
+                "Minor z-index issues",
+                "Subtle gradient differences",
+                "Tables not perfectly spaced",
+                "Buttons not perfectly padded",
+                "Fonts not perfectly matched",
+                "Tooltips not perfectly positioned",
+                "Images not perfectly aligned",
+                "Navigation links not perfectly spaced",
+                "Input fields not perfectly styled",
+                "Buttons not perfectly shadowed",
+                "Tables not perfectly bordered",
+                "Dropdowns not perfectly styled",
+                "Settings layout not perfect",
+                "Minor UI inconsistencies",
+                "Text not perfectly formatted"
+            ],
+            "Reports": [
+                "Images not perfectly captioned",
+                "Hover effects not perfectly timed",
+                "Text not perfectly formatted",
+                "Tooltips not perfectly sized",
+                "Buttons not perfectly spaced",
+                "Navigation bar not perfectly padded",
+                "Input fields not perfectly bordered",
+                "Tables not perfectly centered",
+                "Images not perfectly sized",
+                "Dropdowns not perfectly shadowed",
+                "Buttons not perfectly bold",
+                "Fonts not perfectly uniform",
+                "Tooltips not perfectly timed",
+                "Navigation links not perfectly underlined",
+                "Report layout not perfect",
+                "Minor UI inconsistencies",
+                "Text not perfectly justified"
             ],
             "Admin": [
+                "Input fields not perfectly highlighted",
+                "Tables not perfectly padded",
                 "Images not perfectly responsive",
                 "Hover effects not perfectly smooth",
                 "Text not perfectly justified",
                 "Buttons not perfectly aligned",
                 "Dropdowns not perfectly padded",
                 "Navigation bar not perfectly styled",
-                "Input fields not perfectly sized"
+                "Input fields not perfectly sized",
+                "Tables not perfectly highlighted",
+                "Pixel-perfect issues",
+                "Scrollbar design mismatch",
+                "Padding/margin inconsistency",
+                "Admin layout not perfect",
+                "Hover effects not perfect",
+                "Text not perfectly centered",
+                "Icons not perfectly sized"
             ]
         }
     }
-}; 
+};
