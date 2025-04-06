@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beautiful Site</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .selector {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        select {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            cursor: pointer;
+        }
+        #bugList {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: none;
+        }
+        #bugList h2 {
+            margin-top: 0;
+            color: #555;
+        }
+        #bugList ul {
+            list-style-type: decimal;
+            padding-left: 20px;
+        }
+        #bugList li {
+            margin: 5px 0;
+            color: #333;
+        }
+        @media (max-width: 600px) {
+            .selector {
+                flex-direction: column;
+                align-items: center;
+            }
+            select {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="images/logo.png" alt="Logo" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <h1>Bug List Showcase</h1>
+        <div class="container">
+            <div class="selector">
+                <select id="prioritySelect" onchange="updateBugList()">
+                    <option value="">Select Priority</option>
+                    <option value="P0">P0</option>
+                    <option value="P1">P1</option>
+                    <option value="P2">P2</option>
+                    <option value="P3">P3</option>
+                    <option value="P4">P4</option>
+                </select>
+                <select id="bugTypeSelect" onchange="updateBugList()">
+                    <option value="">Select Bug Type</option>
+                    <option value="Functional">Functional</option>
+                    <option value="HTML/UI">HTML/UI</option>
+                </select>
+            </div>
+            <div id="bugList">
+                <h2 id="bugListTitle"></h2>
+                <ul id="bugItems"></ul>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <p>Created By:</p>
+                <h3>Abhiram</h3>
+                <p>Lead QA Analyst, Intersmart</p>
+            </div>
+            <div class="footer-links">
+                <ul>
+                    <li><a href="#privacy">Privacy Policy</a></li>
+                    <li><a href="#terms">Terms of Service</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const bugData = {
+            "P0": {
+                "Functional": [
+                    "Login/signup not working", "Payment not processing", "Site crash on key action", "Accessing unauthorized data", "Order not placed but amount deducted",
+                    "Account deletion failing silently", "Critical data corruption during save", "User stuck in infinite redirect loop", "Admin unable to access control panel",
+                    "Two-factor authentication (2FA) not triggering", "Database connection failure", "Server returning 500 errors on all requests", "User sessions hijacked",
+                    "Checkout process freezing", "API authentication tokens not generating", "File downloads corrupted", "User permissions overwritten", "Real-time updates not syncing",
+                    "Critical notifications not sending", "Backup restoration failing", "System locking users out randomly", "Core feature disabled unexpectedly", "Data export failing mid-process",
+                    "Payment refunds not processing", "User registration emails not delivering", "Site-wide search crashing server", "Admin commands not executing", "Shopping cart emptying on refresh",
+                    "Secure pages accessible without login", "Database queries timing out", "User input sanitization failing", "Critical reports not generating", "Subscription renewals not triggering",
+                    "Multi-user conflicts corrupting data", "API endpoints returning 403 errors", "Password reset links invalid", "System crashing on high traffic", "Key workflows stuck in loading state",
+                    "User deletion removing unrelated data", "Payment gateway rejecting valid cards", "Session timeouts locking admins out", "File uploads crashing server", "Authentication bypass possible",
+                    "Core service outages", "Data migration failing completely", "User roles not applying", "System logging disabled", "Critical third-party integrations failing", "Email verification not completing",
+                    "Site unusable due to memory leaks"
+                ],
+                "HTML/UI": [
+                    "Layout completely broken", "Important CTA buttons not clickable", "Critical content missing on load", "Page not rendering at all in any browser", "Entire site displaying blank white screen",
+                    "Navigation menu inaccessible", "Checkout form fields not visible", "Severe visual distortion on all pages", "Images not loading on product pages", "Modal popups blocking all interactions",
+                    "Homepage banner not displaying", "Footer overlapping main content", "Login form not appearing", "Product listings invisible", "Buttons missing on mobile view", "Text unreadable due to overlap",
+                    "Entire sidebar missing", "Page stuck in infinite scroll loop", "Critical error messages not showing", "Forms not rendering on tablets", "Header logo not loading", "Site crashing on resize",
+                    "Key sections blacked out", "Popups not dismissible", "Video players not loading", "Search bar not visible", "Checkout page blank", "Profile picture upload broken", "Main content shifted off-screen",
+                    "Buttons unresponsive on all devices", "Fonts not loading, text invisible", "Navigation links dead", "Tables not rendering rows", "Images replaced with broken icons", "Critical alerts not visible",
+                    "Page elements flickering uncontrollably", "Dropdowns not appearing", "Site unusable on older browsers", "Key inputs not accepting text", "Overlays blocking all clicks", "CSS not loading at all",
+                    "Entire dashboard blank", "Mobile menu not opening", "Forms submitting blank pages", "Product images not clickable", "Site logo distorted beyond recognition", "Scrollbar missing on long pages",
+                    "Payment fields not displaying", "UI frozen on load", "Critical buttons hidden behind elements"
+                ]
+            },
+            "P1": {
+                "Functional": [
+                    "Forgot password not working", "Important forms not submitting", "Role-based access issues", "Broken API on critical pages", "Email/OTP delays on auth", "Shopping cart not saving items",
+                    "User profile updates not reflecting", "File uploads failing on key features", "Payment gateway timeout errors", "Duplicate account creation allowed", "Search filters not applying",
+                    "User logout not redirecting", "Password strength validation broken", "API rate limits blocking users", "Order history not loading", "Email notifications delayed", "User settings reset randomly",
+                    "Form submissions timing out", "Payment retries failing", "Profile picture not saving", "Comments not posting", "Data imports stalling", "Third-party login failing", "Session expiration too short",
+                    "Bulk actions not processing", "User bans not enforcing", "Analytics not recording events", "Subscription cancellations delayed", "File downloads incomplete", "Permissions not updating",
+                    "Search autocomplete broken", "OTP resend not working", "Cart discounts not applying", "User verification emails bouncing", "API responses missing fields", "Form validation too strict",
+                    "Multi-language support failing", "Data sync lagging", "Admin reports incomplete", "Payment status not updating", "User invites not sending", "Filters resetting on refresh", "Sorting not persisting",
+                    "Email templates not rendering", "User deletion not logged", "API calls dropping intermittently", "Checkout stuck on validation", "Profile edits not syncing", "Notifications stuck in queue",
+                    "Role changes not immediate"
+                ],
+                "HTML/UI": [
+                    "Major responsiveness issues", "Header/Footer not visible on certain screens", "Overlapping elements on common devices", "Cross-browser layout mismatch", "Dropdown menus not expanding",
+                    "Form fields misaligned on mobile", "Key images stretched or distorted", "Buttons unresponsive on touch devices", "Scroll not working on critical sections", "Popups not closing on smaller screens",
+                    "Text truncated on tablets", "Navigation bar overlapping content", "Images not resizing properly", "Buttons too small on mobile", "Footer links not clickable", "Modal windows misaligned",
+                    "Search bar too narrow", "Profile page layout broken", "Tables not scrollable on mobile", "Input fields overlapping labels", "Hover effects not working", "Images loading slowly",
+                    "Checkout steps not visible", "Sidebar cut off on small screens", "Fonts too small on mobile", "Buttons shifting on click", "Popups too large for screen", "Form labels not aligned",
+                    "Product cards misaligned", "Header text overlapping logo", "Scrollbar overlapping content", "Images not centered", "Dropdowns cut off by edges", "Text not wrapping properly",
+                    "Buttons not styled on Safari", "Footer pushed off-screen", "Modal backgrounds not dimming", "Input fields too wide", "Navigation icons misaligned", "Tables breaking layout",
+                    "Images not loading on Edge", "Form buttons overlapping", "Content shifting on load", "Profile images distorted", "Search results misaligned", "Buttons not visible on scroll",
+                    "Text overlapping images", "Popups not centered", "Header not sticky on scroll", "UI elements clipped on resize"
+                ]
+            },
+            "P2": {
+                "Functional": [
+                    "Incorrect validation error messages", "Search returning wrong data", "Sorting and filtering not functioning properly", "Pagination issues", "User preferences not saving correctly",
+                    "Incorrect timezone handling", "Partial data loss in multi-step forms", "Rate limiting not enforced properly", "Notifications not triggering on events", "Analytics tracking missing key actions",
+                    "Comments not displaying in order", "File previews not loading", "Search suggestions outdated", "Form autofill not working", "User activity logs incomplete", "Sorting resets on page change",
+                    "Filters not saving", "Pagination skipping pages", "Email links not tracking", "Data export missing columns", "Profile updates delayed", "Search case sensitivity issues", "Notifications duplicating",
+                    "User tags not applying", "Form submissions slow", "Analytics delayed", "File uploads stuck in queue", "Sorting not alphabetical", "Filters overlapping results", "Pagination not resetting",
+                    "Comments not editable", "Search not highlighting terms", "User roles partially applied", "Notifications not clearing", "Data imports missing rows", "Profile fields not validating",
+                    "Search not filtering by date", "File downloads slow", "Sorting by relevance broken", "Filters not clearing", "Pagination buttons unresponsive", "User preferences resetting", "Comments not syncing",
+                    "Search not handling special characters", "Notifications not prioritized", "Data exports misformatted", "Profile updates not logged", "Search results inconsistent", "Filters not applying to all data",
+                    "Pagination misaligned with results"
+                ],
+                "HTML/UI": [
+                    "Button alignment issues", "Font not loading from source", "Inconsistent theme use", "Broken hover/click effects on secondary elements", "Images slightly cropped on certain resolutions",
+                    "Tooltips not appearing on hover", "Table columns misaligned", "Secondary navigation lagging", "Input fields not highlighting on focus", "Minor layout shift during page load",
+                    "Buttons too close together", "Text slightly blurry", "Icons not centered", "Dropdowns slow to open", "Images not sharp", "Hover states delayed", "Tables not resizing",
+                    "Buttons not uniform", "Fonts inconsistent across pages", "Tooltips overlapping", "Images slightly off-center", "Navigation links misaligned", "Input borders faint", "Buttons flickering on hover",
+                    "Tables not bordered", "Dropdowns not styled", "Images loading out of order", "Hover effects inconsistent", "Text not bold where expected", "Tooltips too small", "Buttons not padded evenly",
+                    "Navigation bar slightly off", "Input fields not styled", "Tables overlapping text", "Images not aligned with text", "Dropdowns not closing", "Buttons not highlighted", "Fonts not matching design",
+                    "Tooltips not positioned", "Navigation links too small", "Input fields misaligned", "Tables not scrollable", "Images slightly pixelated", "Hover effects missing", "Text not spaced evenly",
+                    "Buttons not clickable on edges", "Dropdowns overlapping content", "Navigation bar not uniform", "Input fields too narrow", "Tables not styled consistently"
+                ]
+            },
+            "P3": {
+                "Functional": [
+                    "Sessions not clearing on logout", "Console warnings with minor impact", "Auto-complete not working", "Delays in data loading (non-blocking)", "Incorrect default sorting on lists",
+                    "Minor caching issues on refresh", "Background sync failing intermittently", "Optional fields marked as required", "Incorrect log timestamps", "API rate limit warnings without impact",
+                    "User preferences not syncing", "Search history not saving", "Notifications delayed slightly", "Form submissions not logged", "Data exports slow", "Profile updates not immediate",
+                    "Comments not timestamped", "Search not saving filters", "Sorting not defaulting", "File uploads not previewed", "Analytics slightly off", "User roles not refreshed", "Notifications not grouped",
+                    "Data imports not logged", "Profile fields not cleared", "Search not caching results", "File downloads not tracked", "Sorting not saved", "Filters not highlighted", "Pagination not smooth",
+                    "Comments not formatted", "Search not prioritizing", "User tags not synced", "Notifications not dismissible", "Data exports not zipped", "Profile edits not previewed", "Search not auto-correcting",
+                    "File uploads not prioritized", "Sorting not customizable", "Filters not searchable", "Pagination not styled", "User preferences not logged", "Comments not searchable", "Search not handling spaces",
+                    "Notifications not timed", "Data exports not named", "Profile updates not notified", "Search results not paginated", "Filters not defaulted", "Pagination not responsive"
+                ],
+                "HTML/UI": [
+                    "Minor spacing issues", "Placeholder text missing", "Broken minor icons", "Animation glitches (non-critical)", "Slight color mismatch", "Subtle flickering on page transitions",
+                    "Unstyled fallback font briefly visible", "Misaligned social media icons", "Hover states inconsistent on minor buttons", "Small text overflow in edge cases", "Buttons slightly off-center",
+                    "Text not aligned with icons", "Icons not sharp", "Dropdowns slightly delayed", "Images not optimized", "Hover effects faint", "Tables slightly misaligned", "Buttons not rounded",
+                    "Fonts slightly off", "Tooltips not styled", "Images not flush", "Navigation links not spaced", "Input fields not padded", "Buttons not shadowed", "Tables not padded", "Dropdowns not highlighted",
+                    "Images not captioned", "Hover effects not smooth", "Text not italicized", "Tooltips not aligned", "Buttons not spaced", "Navigation bar not padded", "Input fields not bordered",
+                    "Tables not centered", "Images not sized", "Dropdowns not shadowed", "Buttons not bold", "Fonts not uniform", "Tooltips not timed", "Navigation links not underlined", "Input fields not highlighted",
+                    "Tables not spaced", "Images not responsive", "Hover effects not timed", "Text not justified", "Buttons not aligned with text", "Dropdowns not padded", "Navigation bar not styled",
+                    "Input fields not sized", "Tables not highlighted"
+                ]
+            },
+            "P4": {
+                "Functional": [
+                    "Typos in system logs", "Rare edge case failures", "Minor logic errors in admin-only tools", "Deprecated API usage", "Unhandled exceptions in non-critical scripts", "Incorrect sorting in archived data",
+                    "Debug messages visible in production", "Minor rounding errors in calculations", "Unoptimized database queries (no impact)", "Feature flags not toggling off properly", "User preferences not logged",
+                    "Search history not cleared", "Notifications not formatted", "Form submissions not tracked", "Data exports not optimized", "Profile updates not timestamped", "Comments not archived",
+                    "Search not logging queries", "Sorting not logged", "File uploads not logged", "Analytics not detailed", "User roles not logged", "Notifications not logged", "Data imports not tracked",
+                    "Profile fields not logged", "Search not optimized", "File downloads not logged", "Sorting not tracked", "Filters not logged", "Pagination not logged", "Comments not logged", "Search not tracked",
+                    "User tags not logged", "Notifications not tracked", "Data exports not tracked", "Profile edits not tracked", "Search not logged", "File uploads not tracked", "Sorting not optimized",
+                    "Filters not tracked", "Pagination not tracked", "User preferences not tracked", "Comments not tracked", "Search not optimized", "Notifications not optimized", "Data exports not optimized",
+                    "Profile updates not optimized", "Search results not optimized", "Filters not optimized", "Pagination not optimized"
+                ],
+                "HTML/UI": [
+                    "Pixel-perfect issues", "Scrollbar design mismatch", "Padding/margin inconsistency", "Text capitalization/formatting issues", "Favicon not updating in some browsers", "Slight shadow misalignment",
+                    "Unintended line breaks in long text", "Cursor style inconsistency", "Minor z-index layering issues", "Subtle gradient rendering differences", "Buttons not perfectly round", "Text not perfectly centered",
+                    "Icons not perfectly sized", "Dropdowns not perfectly aligned", "Images not perfectly sharp", "Hover effects not perfect", "Tables not perfectly spaced", "Buttons not perfectly padded",
+                    "Fonts not perfectly matched", "Tooltips not perfectly positioned", "Images not perfectly aligned", "Navigation links not perfectly spaced", "Input fields not perfectly styled", "Buttons not perfectly shadowed",
+                    "Tables not perfectly bordered", "Dropdowns not perfectly styled", "Images not perfectly captioned", "Hover effects not perfectly timed", "Text not perfectly formatted", "Tooltips not perfectly sized",
+                    "Buttons not perfectly spaced", "Navigation bar not perfectly padded", "Input fields not perfectly bordered", "Tables not perfectly centered", "Images not perfectly sized", "Dropdowns not perfectly shadowed",
+                    "Buttons not perfectly bold", "Fonts not perfectly uniform", "Tooltips not perfectly timed", "Navigation links not perfectly underlined", "Input fields not perfectly highlighted", "Tables not perfectly padded",
+                    "Images not perfectly responsive", "Hover effects not perfectly smooth", "Text not perfectly justified", "Buttons not perfectly aligned", "Dropdowns not perfectly padded", "Navigation bar not perfectly styled",
+                    "Input fields not perfectly sized", "Tables not perfectly highlighted"
+                ]
+            }
+        };
+
+        function updateBugList() {
+            const priority = document.getElementById("prioritySelect").value;
+            const bugType = document.getElementById("bugTypeSelect").value;
+            const bugListDiv = document.getElementById("bugList");
+            const bugListTitle = document.getElementById("bugListTitle");
+            const bugItems = document.getElementById("bugItems");
+
+            if (priority && bugType) {
+                const bugs = bugData[priority][bugType];
+                bugListTitle.textContent = `${priority} - ${bugType} Bugs`;
+                bugItems.innerHTML = bugs.map(bug => `<li>${bug}</li>`).join("");
+                bugListDiv.style.display = "block";
+            } else {
+                bugListDiv.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
