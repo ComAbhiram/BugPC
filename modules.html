@@ -17,12 +17,27 @@
         th {
             background-color: #f4f4f4;
         }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        tr.highlight {
+            background-color: #d1e7dd !important;
+        }
+        .no-results {
+            text-align: center;
+            font-style: italic;
+            color: #888;
+        }
     </style>
 </head>
 <body>
     <h1>Modules</h1>
     <input type="text" id="searchBugId" placeholder="Search by Bug ID">
     <button onclick="searchBug()">Search</button>
+    <button onclick="resetSearch()">Reset</button>
     <table>
         <thead>
             <tr>
@@ -31,6 +46,9 @@
         </thead>
         <tbody id="modulesTableBody">
             <!-- Rows will be dynamically populated -->
+            <tr id="noResultsRow" class="no-results" style="display: none;">
+                <td colspan="1">No results found</td>
+            </tr>
         </tbody>
     </table>
     <script src="scripts.js"></script>
@@ -38,15 +56,33 @@
         function searchBug() {
             const bugId = document.getElementById('searchBugId').value.trim();
             const tableBody = document.getElementById('modulesTableBody');
-            const rows = tableBody.querySelectorAll('tr');
+            const rows = tableBody.querySelectorAll('tr:not(#noResultsRow)');
+            let hasResults = false;
+
             rows.forEach(row => {
                 const cell = row.querySelector('td');
                 if (cell && cell.textContent.includes(bugId)) {
                     row.style.display = '';
+                    row.classList.add('highlight');
+                    hasResults = true;
                 } else {
                     row.style.display = 'none';
+                    row.classList.remove('highlight');
                 }
             });
+
+            document.getElementById('noResultsRow').style.display = hasResults ? 'none' : '';
+        }
+
+        function resetSearch() {
+            const tableBody = document.getElementById('modulesTableBody');
+            const rows = tableBody.querySelectorAll('tr');
+            rows.forEach(row => {
+                row.style.display = '';
+                row.classList.remove('highlight');
+            });
+            document.getElementById('searchBugId').value = '';
+            document.getElementById('noResultsRow').style.display = 'none';
         }
     </script>
 </body>
