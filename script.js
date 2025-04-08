@@ -136,6 +136,43 @@ priorityItems.forEach(item => {
         priorityItems.forEach(i => i.classList.remove('active'));
         this.classList.add('active');
         currentPriority = this.getAttribute('data-priority');
+
+        // Add smooth sliding animation
+        const bugTableContainer = document.querySelector('.bug-table-container');
+        bugTableContainer.style.transition = 'opacity 0.5s ease-in-out';
+        bugTableContainer.style.opacity = '0';
+
+        setTimeout(() => {
+            updateBugList();
+            bugTableContainer.style.opacity = '1';
+        }, 500);
+    });
+});
+
+// Add smooth sliding animation for bug type buttons
+const bugTypeButtons = document.querySelectorAll('.bug-type-button');
+const slidingIndicator = document.querySelector('.sliding-indicator');
+
+function updateSlidingIndicator() {
+    const activeButton = document.querySelector('.bug-type-button.active');
+    if (activeButton) {
+        slidingIndicator.style.width = `${activeButton.offsetWidth}px`;
+        slidingIndicator.style.transform = `translateX(${activeButton.offsetLeft}px)`;
+    }
+}
+
+// Initialize sliding indicator position
+updateSlidingIndicator();
+
+bugTypeButtons.forEach(button => {
+    button.addEventListener('click', function() {
+        bugTypeButtons.forEach(btn => btn.classList.remove('active'));
+        this.classList.add('active');
+        currentBugType = this.getAttribute('data-bug-type');
+
+        // Update sliding indicator position
+        updateSlidingIndicator();
+
         updateBugList();
     });
 });
