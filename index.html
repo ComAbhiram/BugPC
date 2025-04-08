@@ -223,8 +223,9 @@
         }
 
         .bug-table td {
-            padding: 1rem 1.5rem;
+            padding: 1rem;
             border-bottom: 1px solid var(--border-color);
+            text-align: left; /* Ensure all table data aligns to the left */
         }
 
         .bug-table tr:hover td {
@@ -245,7 +246,7 @@
         .no-bugs {
             padding: 3rem;
             text-align: center;
-            color: var(--secondary-color);
+            color: var (--secondary-color);
             font-size: 0.95rem;
         }
 
@@ -961,6 +962,7 @@
         .bug-table td {
             padding: 1rem;
             border-bottom: 1px solid var (--border-color);
+            text-align: left; /* Ensure all table data aligns to the left */
         }
 
         .bug-table th, .bug-table td {
@@ -1240,20 +1242,33 @@
                 const bugItems = document.getElementById('bugItems');
                 const functionalColumn = document.querySelector('.functional-column');
                 const htmlColumn = document.querySelector('.bug-table th:first-child');
+                const htmlColumnCells = document.querySelectorAll('.bug-table td:first-child');
+                const functionalColumnCells = document.querySelectorAll('.bug-table td:nth-child(2)');
                 let htmlBugs = [];
                 let functionalBugs = [];
 
                 // Show or hide columns based on the current bug type
                 if (currentBugType === 'HTML/UI') {
                     functionalColumn.classList.add('hidden');
+                    functionalColumnCells.forEach(cell => cell.classList.add('hidden'));
                     htmlColumn.classList.remove('hidden');
+                    htmlColumnCells.forEach(cell => cell.classList.remove('hidden'));
                 } else if (currentBugType === 'Functional') {
                     htmlColumn.classList.add('hidden');
+                    htmlColumnCells.forEach(cell => cell.classList.add('hidden'));
                     functionalColumn.classList.remove('hidden');
+                    functionalColumnCells.forEach(cell => cell.classList.remove('hidden'));
                 } else {
                     htmlColumn.classList.remove('hidden');
+                    htmlColumnCells.forEach(cell => cell.classList.remove('hidden'));
                     functionalColumn.classList.remove('hidden');
+                    functionalColumnCells.forEach(cell => cell.classList.remove('hidden'));
                 }
+
+                // Align table data to the left for all columns
+                document.querySelectorAll('.bug-table td').forEach(td => {
+                    td.style.textAlign = 'left';
+                });
 
                 // Get bugs based on current module selection
                 const moduleBugs = currentModule === 'all' 
@@ -1293,7 +1308,7 @@
                 const maxLength = Math.max(htmlBugs.length, functionalBugs.length);
                 bugItems.innerHTML = Array.from({ length: maxLength }, (_, index) => `
                     <tr>
-                        <td>
+                        <td class="${htmlColumn.classList.contains('hidden') ? 'hidden' : ''}">
                             ${htmlBugs[index] ? `
                                 <div class="bug-item">
                                     <span>${htmlBugs[index].bug}</span>
