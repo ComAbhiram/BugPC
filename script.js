@@ -38,16 +38,23 @@ function updateBugList() {
     let htmlBugs = [];
     let functionalBugs = [];
 
-    // Show or hide columns based on the current bug type
+    // Adjust visibility and alignment of columns
     if (currentBugType === 'HTML/UI') {
         functionalColumn.classList.add('hidden');
         htmlColumn.classList.remove('hidden');
+        htmlColumn.textContent = 'HTML/UI Issues'; // Update column header
+        htmlColumn.style.width = '100%'; // Ensure full width for HTML/UI bugs
     } else if (currentBugType === 'Functional') {
-        htmlColumn.classList.add('hidden');
-        functionalColumn.classList.remove('hidden');
+        htmlColumn.classList.remove('hidden');
+        functionalColumn.classList.add('hidden');
+        htmlColumn.textContent = 'Functional Issues'; // Update column header
+        htmlColumn.style.width = '100%'; // Ensure full width for Functional bugs
     } else {
         htmlColumn.classList.remove('hidden');
         functionalColumn.classList.remove('hidden');
+        htmlColumn.textContent = 'HTML/UI Issues'; // Reset column header
+        htmlColumn.style.width = '50%'; // Split width evenly
+        functionalColumn.style.width = '50%';
     }
 
     // Get bugs based on current module selection
@@ -85,28 +92,16 @@ function updateBugList() {
     }
 
     // Generate table rows
-    const maxLength = Math.max(htmlBugs.length, functionalBugs.length);
-    bugItems.innerHTML = Array.from({ length: maxLength }, (_, index) => `
+    const bugs = currentBugType === 'HTML/UI' ? htmlBugs : functionalBugs;
+    bugItems.innerHTML = bugs.map((bugData, index) => `
         <tr>
-            <td>
-                ${htmlBugs[index] ? `
-                    <div class="bug-item">
-                        <span>${htmlBugs[index].bug}</span>
-                        <button class="copy-btn" data-bug-id="${currentPriority}-H${index + 1}" data-bug-type="HTML/UI" data-module="${htmlBugs[index].module}">
-                            <i class="fas fa-copy"></i>
-                        </button>
-                    </div>
-                ` : ''}
-            </td>
-            <td class="${functionalColumn.classList.contains('hidden') ? 'hidden' : ''}">
-                ${functionalBugs[index] ? `
-                    <div class="bug-item">
-                        <span>${functionalBugs[index].bug}</span>
-                        <button class="copy-btn" data-bug-id="${currentPriority}-F${index + 1}" data-bug-type="Functional" data-module="${functionalBugs[index].module}">
-                            <i class="fas fa-copy"></i>
-                        </button>
-                    </div>
-                ` : ''}
+            <td style="text-align: left;">
+                <div class="bug-item">
+                    <span>${bugData.bug}</span>
+                    <button class="copy-btn" data-bug-id="${currentPriority}-${currentBugType === 'HTML/UI' ? 'H' : 'F'}${index + 1}" data-bug-type="${currentBugType}" data-module="${bugData.module}">
+                        <i class="fas fa-copy"></i>
+                    </button>
+                </div>
             </td>
         </tr>
     `).join('');
