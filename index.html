@@ -1311,7 +1311,7 @@
                         <td class="${htmlColumn.classList.contains('hidden') ? 'hidden' : ''}">
                             ${htmlBugs[index] ? `
                                 <div class="bug-item">
-                                    <span>${htmlBugs[index].bug}</span>
+                                    <span>${htmlBugs[index].bug}${currentModule === 'all' ? ` <strong>(${htmlBugs[index].module})</strong>` : ''}</span>
                                     <button class="copy-btn" data-bug-id="${currentPriority}-H${index + 1}" data-bug-type="HTML/UI" data-module="${htmlBugs[index].module}">
                                         <i class="fas fa-copy"></i>
                                     </button>
@@ -1321,7 +1321,7 @@
                         <td class="${functionalColumn.classList.contains('hidden') ? 'hidden' : ''}">
                             ${functionalBugs[index] ? `
                                 <div class="bug-item">
-                                    <span>${functionalBugs[index].bug}</span>
+                                    <span>${functionalBugs[index].bug}${currentModule === 'all' ? ` <strong>(${functionalBugs[index].module})</strong>` : ''}</span>
                                     <button class="copy-btn" data-bug-id="${currentPriority}-F${index + 1}" data-bug-type="Functional" data-module="${functionalBugs[index].module}">
                                         <i class="fas fa-copy"></i>
                                     </button>
@@ -1337,7 +1337,7 @@
                         const bugId = this.getAttribute('data-bug-id');
                         const bugType = this.getAttribute('data-bug-type');
                         const module = this.getAttribute('data-module');
-                        const bugText = this.parentElement.querySelector('span').textContent;
+                        const bugText = this.parentElement.querySelector('span').textContent.replace(/ \(.+\)$/, ''); // Remove module name in brackets
                         
                         const copyText = `The bug "${bugText}" is ${currentPriority} ${bugType} bug in the ${module} module. Bug ID: ${bugId}`;
                         
