@@ -8466,7 +8466,7 @@ const bugData = {
                 "Button size faintly uneven on resize",
                 "Fields subtly flicker on high traffic",
                 "Login page padding faintly uneven",
-               "Error message subtly cuts off",
+ "Error message subtly cuts off",
                 "Button hover effect faintly inconsistent",
                 "Text alignment faintly off on tablets",
                 "Fields subtly jitter on refresh",
@@ -11021,7 +11021,7 @@ const bugData = {
                 "Header subtly lags on hundred-ninety-first shortcut",
                 "Links faintly misalign on hundred-ninety-second load"
             ],
-"Menu": [
+            "Menu": [
                 "Menu faintly lags on hundredth load",
                 "Items subtly lag on hundred-first click",
                 "Page faintly lags on hundred-second menu",
@@ -12689,7 +12689,6 @@ const bugData = {
                 "Button shadow subtly delays on hundred-ninety-fourth hover",
                 "Logo faintly shifts on hundred-ninety-fifth corporate network"
             ],
-"HTML/UI": {
             "Menu": [
                 "Items faintly misalign on hundredth load",
                 "Text subtly shifts on hundred-first hover",
@@ -13476,7 +13475,6 @@ const bugData = {
             ]
         }
     },
-
     "P4": {
         "Functional": {
             "Login": [
