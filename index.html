@@ -65,6 +65,7 @@
             display: flex;
             align-items: center;
             gap: 1rem;
+            flex: 1; /* Allow the logo container to take up space */
         }
 
         .logo {
@@ -73,15 +74,23 @@
         }
 
         .site-title {
-            font-size: 1.25rem;
-            font-weight: 500;
-            color: var(--text-color);
+            font-size: 1.5rem; /* Adjusted font size */
+            font-weight: 600;
+            text-align: center; /* Center the title */
+            margin: 0 auto; /* Center horizontally */
+            flex: 1; /* Allow the title to take up remaining space */
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent; /* Make the text transparent to show the gradient */
         }
 
         nav ul {
             display: flex;
             gap: 1.5rem;
             list-style: none;
+            flex: 1; /* Allow the navigation to take up space */
+            justify-content: flex-end; /* Align navigation to the right */
         }
 
         nav a {
@@ -95,7 +104,7 @@
 
         nav a.active {
             background-color: var(--primary-color);
-            color: var(--text-color);
+            color: black; /* Changed text color to black */
         }
 
         nav a:hover:not(.active) {
@@ -1067,6 +1076,19 @@
     </style>
 </head>
 <body>
+    <header>
+        <div class="header-content">
+            <div class="logo-container">
+                <img src="images/logo.png" alt="Intersmart Logo" class="logo">
+                <span class="site-title">Bug Priority Classification System</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="mailto:abhiram@intersmart.in" class="active">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
     <button class="menu-toggle">Menu</button>
     <div class="app-container">
         <div class="sidebar">
