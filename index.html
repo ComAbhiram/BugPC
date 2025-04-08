@@ -26,6 +26,10 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            height: 100%; /* Ensure the body takes up the full height of the viewport */
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             background-color: var(--background-color);
@@ -40,9 +44,12 @@
             background: linear-gradient(to bottom, #2d2d2d, #1a1a1a);
             box-shadow: var(--shadow);
             padding: 1rem 0;
-            position: sticky;
+            position: fixed;
             top: 0;
-            z-index: 100;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: 60px;
         }
 
         .header-content {
@@ -235,8 +242,13 @@
 
         footer {
             background: linear-gradient(to top, #2d2d2d, #1a1a1a);
-            padding: 1.5rem 0;
-            margin-top: auto;
+            padding: 1rem 0; /* Reduced height */
+            position: relative; /* Allow footer to be fully visible */
+            height: auto;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
         }
 
         .footer-content {
@@ -301,7 +313,7 @@
         .qa-members a:hover {
             color: #1a1a1a;
             background-color: var(--primary-color);
-            border-color: var(--primary-color);
+            border-color: var (--primary-color);
             transform: translateY(-2px);
             box-shadow: var(--shadow);
         }
@@ -339,7 +351,7 @@
             padding-top: 1rem;
             margin-top: 1rem;
             border-top: 1px solid var(--border-color);
-            color: var(--secondary-color);
+            color: var (--secondary-color);
             font-size: 0.875rem;
         }
 
@@ -792,158 +804,339 @@
                 padding: 1rem;
             }
         }
+
+        .app-container {
+            display: flex;
+            min-height: 100vh;
+            padding-top: 60px; /* Add space for header */
+            position: relative;
+            flex: 1; /* Allow the main content to grow and push the footer down */
+            flex-direction: column;
+            min-height: 100%; /* Ensure the container takes up the full height */
+        }
+
+        .sidebar {
+            width: 280px;
+            background: linear-gradient(to bottom, #2d2d2d, #1a1a1a);
+            padding: 1.5rem;
+            position: fixed;
+            top: 60px; /* Start below header */
+            bottom: 0;
+            left: 0;
+            overflow-y: auto;
+            border-right: 1px solid var(--border-color);
+            z-index: 100;
+            height: calc(100vh - 60px); /* Adjust height to fit the viewport */
+        }
+
+        .main-content {
+            flex: 1;
+            margin-left: 280px;
+            padding: 2rem;
+            padding-bottom: 200px; /* Add space for footer */
+            min-height: calc(100vh - 60px); /* Subtract header height */
+            flex: 1; /* Push the footer to the bottom when content is short */
+        }
+
+        .priority-menu {
+            margin-bottom: 2rem;
+        }
+
+        .priority-item {
+            padding: 0.75rem 1rem;
+            color: var(--text-color);
+            cursor: pointer;
+            border-radius: 0.5rem;
+            margin-bottom: 0.5rem;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .priority-item:hover {
+            background-color: #333333;
+            color: var(--primary-color);
+        }
+
+        .priority-item.active {
+            background-color: var(--primary-color);
+            color: #1a1a1a;
+            font-weight: 500;
+        }
+
+        .priority-item i {
+            color: var(--primary-color);
+        }
+
+        .priority-item.active i {
+            color: #1a1a1a;
+        }
+
+        .modules-menu {
+            margin-top: 1rem;
+            padding-left: 1rem;
+        }
+
+        .module-item {
+            padding: 0.5rem 1rem;
+            color: var(--text-color);
+            cursor: pointer;
+            border-radius: 0.5rem;
+            margin-bottom: 0.25rem;
+            transition: all 0.2s ease;
+        }
+
+        .module-item:hover {
+            background-color: #333333;
+            color: var (--primary-color);
+        }
+
+        .module-item.active {
+            background-color: var(--primary-color);
+            color: #1a1a1a;
+            font-weight: 500;
+        }
+
+        .bug-table-container {
+            background-color: #2d2d2d;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        .table-header {
+            padding: 1rem;
+            background-color: #1a1a1a;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .bug-type-switch {
+            display: flex;
+            gap: 0.5rem;
+            background-color: #333333;
+            padding: 0.25rem;
+            border-radius: 0.5rem;
+        }
+
+        .bug-type-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .bug-type-btn.active {
+            background-color: var(--primary-color);
+            color: #1a1a1a;
+        }
+
+        .bug-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .bug-table th {
+            background-color: #1a1a1a;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-color);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .bug-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var (--border-color);
+        }
+
+        .bug-table th, .bug-table td {
+            text-align: left; /* Ensure consistent alignment */
+            vertical-align: middle; /* Align content vertically */
+            width: 50%; /* Ensure equal column widths */
+        }
+
+        .bug-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .copy-btn {
+            background-color: #333333;
+            color: var(--text-color);
+            border: none;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .copy-btn:hover {
+            background-color: var(--primary-color);
+            color: #1a1a1a;
+        }
+
+        .search-container {
+            margin-bottom: 1.5rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            background-color: #2d2d2d;
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            color: var(--text-color);
+            font-size: 0.95rem;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var (--primary-color);
+        }
+
+        .bug-table th.hidden, .bug-table td.hidden {
+            display: none; /* Hide columns dynamically */
+        }
+
+        .menu-toggle {
+            display: none; /* Hide by default */
+        }
+
+        @media (max-width: 768px) {
+            .app-container {
+                padding-top: 120px; /* Increased space for header on mobile */
+            }
+
+            header {
+                height: auto;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 1000;
+                background: var(--background-color);
+                transform: translateY(-100%);
+                transition: transform 0.3s ease-in-out;
+            }
+
+            .sidebar.open {
+                transform: translateY(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 1rem;
+                min-height: auto;
+            }
+
+            footer {
+                position: relative;
+            }
+
+            .menu-toggle {
+                display: block; /* Show only on mobile */
+            }
+
+            .menu-toggle {
+                display: block;
+                position: fixed;
+                top: 1rem;
+                right: 1rem;
+                z-index: 1100;
+                background: var(--primary-color);
+                color: var(--background-color);
+                border: none;
+                padding: 0.5rem 1rem;
+                border-radius: 0.375rem;
+                cursor: pointer;
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <div class="logo-container">
-                <img src="images/logo.png" alt="Intersmart Logo" class="logo">
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <main>
-        <div class="container">
-            <h1>Bug Priority Classification System</h1>
-            <div class="selector">
-                <div class="custom-dropdown" id="priorityDropdown">
-                    <div class="dropdown-header">
-                        <i class="fas fa-exclamation-circle"></i>
-                        <span>Select Bug Priority Level</span>
-                    </div>
-                    <div class="dropdown-options">
-                        <div class="dropdown-option" data-value="P0">P0 - Critical Impact</div>
-                        <div class="dropdown-option" data-value="P1">P1 - High Impact</div>
-                        <div class="dropdown-option" data-value="P2">P2 - Medium Impact</div>
-                        <div class="dropdown-option" data-value="P3">P3 - Low Impact</div>
-                        <div class="dropdown-option" data-value="P4">P4 - Minimal Impact</div>
-                    </div>
-                    <select id="prioritySelect" onchange="updateBugList()">
-                        <option value="">Select Bug Priority Level</option>
-                        <option value="P0">P0 - Critical Impact</option>
-                        <option value="P1">P1 - High Impact</option>
-                        <option value="P2">P2 - Medium Impact</option>
-                        <option value="P3">P3 - Low Impact</option>
-                        <option value="P4">P4 - Minimal Impact</option>
-                    </select>
+    <button class="menu-toggle">Menu</button>
+    <div class="app-container">
+        <div class="sidebar">
+            <div class="priority-menu">
+                <div class="priority-item active" data-priority="P0">
+                    <i class="fas fa-exclamation-circle"></i>
+                    P0 - Critical Impact
                 </div>
-
-                <div class="custom-dropdown" id="bugTypeDropdown">
-                    <div class="dropdown-header">
-                        <i class="fas fa-bug"></i>
-                        <span>Select Bug Category</span>
-                    </div>
-                    <div class="dropdown-options">
-                        <div class="dropdown-option" data-value="Functional">Functional Issues</div>
-                        <div class="dropdown-option" data-value="HTML/UI">UI/UX Issues</div>
-                    </div>
-                    <select id="bugTypeSelect" onchange="updateBugList()">
-                        <option value="">Select Bug Category</option>
-                        <option value="Functional">Functional Issues</option>
-                        <option value="HTML/UI">UI/UX Issues</option>
-                    </select>
+                <div class="priority-item" data-priority="P1">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    P1 - High Impact
                 </div>
-
-                <div class="custom-dropdown" id="moduleDropdown">
-                    <div class="dropdown-header">
-                        <i class="fas fa-cube"></i>
-                        <span>Select Module</span>
-                    </div>
-                    <div class="dropdown-options">
-                        <div class="dropdown-search">
-                            <input type="text" placeholder="Search modules..." autocomplete="off">
-                        </div>
-                        <div class="dropdown-option" data-value="Login">Login</div>
-                        <div class="dropdown-option" data-value="Home">Home</div>
-                        <div class="dropdown-option" data-value="Dashboard">Dashboard</div>
-                        <div class="dropdown-option" data-value="Profile">Profile</div>
-                        <div class="dropdown-option" data-value="Settings">Settings</div>
-                        <div class="dropdown-option" data-value="Reports">Reports</div>
-                        <div class="dropdown-option" data-value="Admin">Admin</div>
-                        <div class="dropdown-option" data-value="Set">Set</div>
-                        <div class="dropdown-option" data-value="Header">Header</div>
-                        <div class="dropdown-option" data-value="Menu">Menu</div>
-                        <div class="dropdown-option" data-value="Contact Forms">Contact Forms</div>
-                        <div class="dropdown-option" data-value="Slider">Slider</div>
-                        <div class="dropdown-option" data-value="Wishlist">Wishlist</div>
-                        <div class="dropdown-option" data-value="Cart">Cart</div>
-                        <div class="dropdown-option" data-value="Search">Search</div>
-                        <div class="dropdown-option" data-value="Footer">Footer</div>
-                    </div>
-                    <select id="moduleSelect" onchange="updateBugList()">
-                        <option value="">Select Module</option>
-                        <option value="Login">Login</option>
-                        <option value="Home">Home</option>
-                        <option value="Dashboard">Dashboard</option>
-                        <option value="Profile">Profile</option>
-                        <option value="Settings">Settings</option>
-                        <option value="Reports">Reports</option>
-                        <option value="Admin">Admin</option>
-                        <option value="Set">Set</option>
-                        <option value="Header">Header</option>
-                        <option value="Menu">Menu</option>
-                        <option value="Contact Forms">Contact Forms</option>
-                        <option value="Slider">Slider</option>
-                        <option value="Wishlist">Wishlist</option>
-                        <option value="Cart">Cart</option>
-                        <option value="Search">Search</option>
-                        <option value="Footer">Footer</option>
-                    </select>
+                <div class="priority-item" data-priority="P2">
+                    <i class="fas fa-exclamation"></i>
+                    P2 - Medium Impact
+                </div>
+                <div class="priority-item" data-priority="P3">
+                    <i class="fas fa-info-circle"></i>
+                    P3 - Low Impact
+                </div>
+                <div class="priority-item" data-priority="P4">
+                    <i class="fas fa-info"></i>
+                    P4 - Minimal Impact
                 </div>
             </div>
-            <div id="bugList">
-                <h2 id="bugListTitle">Bug Classification Results</h2>
-                <div class="bug-list-container">
-                    <table class="bug-table">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Bug Description</th>
-                                <th>Module</th>
-                                <th>Type</th>
-                            </tr>
-                        </thead>
-                        <tbody id="bugItems"></tbody>
-                    </table>
-                </div>
+            <div class="modules-menu">
+                <div class="module-item active" data-module="all">All Modules</div>
+                <div class="module-item" data-module="Login">Login</div>
+                <div class="module-item" data-module="Home">Home</div>
+                <div class="module-item" data-module="Dashboard">Dashboard</div>
+                <div class="module-item" data-module="Profile">Profile</div>
+                <div class="module-item" data-module="Settings">Settings</div>
+                <div class="module-item" data-module="Reports">Reports</div>
+                <div class="module-item" data-module="Admin">Admin</div>
+                <div class="module-item" data-module="Set">Set</div>
+                <div class="module-item" data-module="Header">Header</div>
+                <div class="module-item" data-module="Menu">Menu</div>
+                <div class="module-item" data-module="Contact Forms">Contact Forms</div>
+                <div class="module-item" data-module="Slider">Slider</div>
+                <div class="module-item" data-module="Wishlist">Wishlist</div>
+                <div class="module-item" data-module="Cart">Cart</div>
+                <div class="module-item" data-module="Search">Search</div>
+                <div class="module-item" data-module="Footer">Footer</div>
             </div>
         </div>
-    </main>
-
-    <footer>
-        <div class="footer-content">
-            <div class="footer-info">
-                <p>Developed By</p>
-                <h3>Abhiram</h3>
-                <p>Lead QA Analyst</p>
-                <p class="company"><a href="https://www.intersmartsolution.com" target="_blank" rel="noopener noreferrer">Intersmart Solutions</a></p>
+        <div class="main-content">
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search by Bug ID..." id="bugIdSearch">
             </div>
-            <div class="qa-team">
-                <p class="team-title">QA Team Members</p>
-                <div class="qa-members">
-                    <a href="mailto:aswathi@intersmart.in"><span>Aswathi M Asok</span></a>
-                    <a href="mailto:minnu@intersmart.in"><span>Minnu Sebastian</span></a>
+            <div class="bug-table-container">
+                <div class="table-header">
+                    <h2>Bug Classification Results</h2>
+                    <div class="bug-type-switch">
+                        <div class="bug-type-btn active" data-type="all">All</div>
+                        <div class="bug-type-btn" data-type="HTML/UI">HTML/UI</div>
+                        <div class="bug-type-btn" data-type="Functional">Functional</div>
+                    </div>
                 </div>
-            </div>
-            <div class="contact-info">
-                <a href="mailto:abhiram@intersmart.in"><i class="fas fa-envelope"></i> abhiram@intersmart.in</a>
-                <a href="tel:+917012649326"><i class="fas fa-phone"></i> +91 7012649326</a>
-                <div class="social-links">
-                    <a href="https://www.linkedin.com/in/abhiram-p-mohan" title="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://github.com/ComAbhiram" title="GitHub" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
-                </div>
+                <table class="bug-table">
+                    <thead>
+                        <tr>
+                            <th>HTML/UI Issues</th>
+                            <th class="functional-column">Functional Issues</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bugItems"></tbody>
+                </table>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 Intersmart Solutions. All rights reserved.</p>
-        </div>
-    </footer>
+    </div>
 
     <script src="bugData.js"></script>
     <script>
@@ -1012,59 +1205,248 @@
             });
         });
 
-        function updateBugList() {
-            const priority = document.getElementById("prioritySelect").value;
-            const bugType = document.getElementById("bugTypeSelect").value;
-            const module = document.getElementById("moduleSelect").value;
-            const bugListDiv = document.getElementById("bugList");
-            const bugListTitle = document.getElementById("bugListTitle");
-            const bugItems = document.getElementById("bugItems");
+        document.addEventListener('DOMContentLoaded', function() {
+            const priorityItems = document.querySelectorAll('.priority-item');
+            const moduleItems = document.querySelectorAll('.module-item');
+            const bugTypeBtns = document.querySelectorAll('.bug-type-btn');
+            const bugIdSearch = document.getElementById('bugIdSearch');
+            let currentPriority = 'P0';
+            let currentModule = 'all';
+            let currentBugType = 'all';
 
-            if (priority && bugType) {
-                let bugs = [];
-                if (module) {
-                    bugs = bugData[priority][bugType][module] || [];
-                    bugListTitle.textContent = `${priority} - ${bugType} - ${module} Module`;
+            function updateBugList() {
+                const bugItems = document.getElementById('bugItems');
+                const functionalColumn = document.querySelector('.functional-column');
+                const htmlColumn = document.querySelector('.bug-table th:first-child');
+                let htmlBugs = [];
+                let functionalBugs = [];
+
+                // Show or hide columns based on the current bug type
+                if (currentBugType === 'HTML/UI') {
+                    functionalColumn.classList.add('hidden');
+                    htmlColumn.classList.remove('hidden');
+                } else if (currentBugType === 'Functional') {
+                    htmlColumn.classList.add('hidden');
+                    functionalColumn.classList.remove('hidden');
                 } else {
-                    bugs = [];
-                    Object.keys(bugData[priority][bugType]).forEach(mod => {
-                        const moduleBugs = bugData[priority][bugType][mod];
-                        moduleBugs.forEach(bug => {
-                            bugs.push({
-                                bug: bug,
-                                module: mod
-                            });
+                    htmlColumn.classList.remove('hidden');
+                    functionalColumn.classList.remove('hidden');
+                }
+
+                // Get bugs based on current module selection
+                const moduleBugs = currentModule === 'all' 
+                    ? Object.keys(bugData[currentPriority]['HTML/UI'])
+                    : [currentModule];
+
+                // Collect HTML/UI bugs
+                moduleBugs.forEach(mod => {
+                    if (bugData[currentPriority]['HTML/UI'][mod]) {
+                        htmlBugs.push(...bugData[currentPriority]['HTML/UI'][mod].map(bug => ({
+                            bug,
+                            module: mod
+                        })));
+                    }
+                });
+
+                // Collect Functional bugs
+                moduleBugs.forEach(mod => {
+                    if (bugData[currentPriority]['Functional'][mod]) {
+                        functionalBugs.push(...bugData[currentPriority]['Functional'][mod].map(bug => ({
+                            bug,
+                            module: mod
+                        })));
+                    }
+                });
+
+                // Filter bugs based on current bug type
+                if (currentBugType !== 'all') {
+                    if (currentBugType === 'HTML/UI') {
+                        functionalBugs = [];
+                    } else {
+                        htmlBugs = [];
+                    }
+                }
+
+                // Generate table rows
+                const maxLength = Math.max(htmlBugs.length, functionalBugs.length);
+                bugItems.innerHTML = Array.from({ length: maxLength }, (_, index) => `
+                    <tr>
+                        <td>
+                            ${htmlBugs[index] ? `
+                                <div class="bug-item">
+                                    <span>${htmlBugs[index].bug}</span>
+                                    <button class="copy-btn" data-bug-id="${currentPriority}-H${index + 1}" data-bug-type="HTML/UI" data-module="${htmlBugs[index].module}">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                            ` : ''}
+                        </td>
+                        <td class="${functionalColumn.classList.contains('hidden') ? 'hidden' : ''}">
+                            ${functionalBugs[index] ? `
+                                <div class="bug-item">
+                                    <span>${functionalBugs[index].bug}</span>
+                                    <button class="copy-btn" data-bug-id="${currentPriority}-F${index + 1}" data-bug-type="Functional" data-module="${functionalBugs[index].module}">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                            ` : ''}
+                        </td>
+                    </tr>
+                `).join('');
+
+                // Add copy functionality
+                document.querySelectorAll('.copy-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const bugId = this.getAttribute('data-bug-id');
+                        const bugType = this.getAttribute('data-bug-type');
+                        const module = this.getAttribute('data-module');
+                        const bugText = this.parentElement.querySelector('span').textContent;
+                        
+                        const copyText = `The bug "${bugText}" is ${currentPriority} ${bugType} bug in the ${module} module. Bug ID: ${bugId}`;
+                        
+                        navigator.clipboard.writeText(copyText).then(() => {
+                            const originalText = this.innerHTML;
+                            this.innerHTML = '<i class="fas fa-check"></i>';
+                            setTimeout(() => {
+                                this.innerHTML = originalText;
+                            }, 2000);
                         });
                     });
-                    bugListTitle.textContent = `${priority} - ${bugType} Classification`;
-                }
-                
-                if (bugs.length > 0) {
-                    bugItems.innerHTML = bugs.map((bug, index) => {
-                        const bugText = typeof bug === 'string' ? bug : bug.bug;
-                        const bugModule = typeof bug === 'string' ? module : bug.module;
-                        return `
-                            <tr>
-                                <td>${index + 1}</td>
-                                <td>${bugText}</td>
-                                <td><span class="priority-badge">${bugModule}</span></td>
-                                <td>${bugType}</td>
-                            </tr>
-                        `;
-                    }).join("");
-                    bugListDiv.style.display = "block";
-                } else {
-                    bugItems.innerHTML = `
-                        <tr>
-                            <td colspan="4" class="no-bugs">No bugs found for the selected criteria</td>
-                        </tr>
-                    `;
-                    bugListDiv.style.display = "block";
-                }
-            } else {
-                bugListDiv.style.display = "none";
+                });
+
+                // Show the table
+                document.querySelector('.bug-table-container').style.display = 'block';
             }
-        }
+
+            priorityItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    priorityItems.forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                    currentPriority = this.getAttribute('data-priority');
+                    updateBugList();
+                });
+            });
+
+            moduleItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    moduleItems.forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                    currentModule = this.getAttribute('data-module');
+                    updateBugList();
+                });
+            });
+
+            bugTypeBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    bugTypeBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    currentBugType = this.getAttribute('data-type');
+                    updateBugList();
+                });
+            });
+
+            bugIdSearch.addEventListener('input', function() {
+                const searchTerm = this.value.trim().toUpperCase();
+                const bugItems = document.getElementById('bugItems');
+                let htmlBugs = [];
+                let functionalBugs = [];
+
+                if (searchTerm.match(/^P[0-4]-[HF]\d+$/)) {
+                    const [priority, typeIndex] = searchTerm.split('-');
+                    const bugType = typeIndex.startsWith('H') ? 'HTML/UI' : 'Functional';
+                    const index = parseInt(typeIndex.substring(1)) - 1;
+
+                    currentPriority = priority;
+                    priorityItems.forEach(item => {
+                        item.classList.toggle('active', item.getAttribute('data-priority') === priority);
+                    });
+
+                    const moduleBugs = currentModule === 'all'
+                        ? Object.keys(bugData[currentPriority][bugType])
+                        : [currentModule];
+
+                    let foundBug = null;
+                    let foundModule = null;
+                    let currentIndex = 0;
+
+                    moduleBugs.forEach(mod => {
+                        if (bugData[currentPriority][bugType][mod]) {
+                            const bugs = bugData[currentPriority][bugType][mod];
+                            if (currentIndex + bugs.length > index) {
+                                foundBug = bugs[index - currentIndex];
+                                foundModule = mod;
+                                return;
+                            }
+                            currentIndex += bugs.length;
+                        }
+                    });
+
+                    if (foundBug) {
+                        if (bugType === 'HTML/UI') {
+                            htmlBugs = [{ bug: foundBug, module: foundModule }];
+                        } else {
+                            functionalBugs = [{ bug: foundBug, module: foundModule }];
+                        }
+                    }
+                } else {
+                    updateBugList();
+                    return;
+                }
+
+                bugItems.innerHTML = `
+                    <tr>
+                        <td>
+                            ${htmlBugs[0] ? `
+                                <div class="bug-item">
+                                    <span>${htmlBugs[0].bug}</span>
+                                    <button class="copy-btn" data-bug-id="${currentPriority}-H1" data-bug-type="HTML/UI" data-module="${htmlBugs[0].module}">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                            ` : ''}
+                        </td>
+                        <td>
+                            ${functionalBugs[0] ? `
+                                <div class="bug-item">
+                                    <span>${functionalBugs[0].bug}</span>
+                                    <button class="copy-btn" data-bug-id="${currentPriority}-F1" data-bug-type="Functional" data-module="${functionalBugs[0].module}">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                            ` : ''}
+                        </td>
+                    </tr>
+                `;
+
+                document.querySelectorAll('.copy-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const bugId = this.getAttribute('data-bug-id');
+                        const bugType = this.getAttribute('data-bug-type');
+                        const module = this.getAttribute('data-module');
+                        const bugText = this.parentElement.querySelector('span').textContent;
+
+                        const copyText = `The bug "${bugText}" is ${currentPriority} ${bugType} bug in the ${module} module. Bug ID: ${bugId}`;
+
+                        navigator.clipboard.writeText(copyText).then(() => {
+                            const originalText = this.innerHTML;
+                            this.innerHTML = '<i class="fas fa-check"></i>';
+                            setTimeout(() => {
+                                this.innerHTML = originalText;
+                            }, 2000);
+                        });
+                    });
+                });
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const sidebar = document.querySelector('.sidebar');
+
+            menuToggle.addEventListener('click', function () {
+                sidebar.classList.toggle('open');
+            });
+        });
     </script>
 </body>
 </html>
