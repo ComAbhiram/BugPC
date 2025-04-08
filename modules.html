@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modules Table</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+    <h1>Modules</h1>
+    <input type="text" id="searchBugId" placeholder="Search by Bug ID">
+    <button onclick="searchBug()">Search</button>
+    <table>
+        <thead>
+            <tr>
+                <th>Module Name</th>
+            </tr>
+        </thead>
+        <tbody id="modulesTableBody">
+            <!-- Rows will be dynamically populated -->
+        </tbody>
+    </table>
+    <script src="scripts.js"></script>
+    <script>
+        function searchBug() {
+            const bugId = document.getElementById('searchBugId').value.trim();
+            const tableBody = document.getElementById('modulesTableBody');
+            const rows = tableBody.querySelectorAll('tr');
+            rows.forEach(row => {
+                const cell = row.querySelector('td');
+                if (cell && cell.textContent.includes(bugId)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
