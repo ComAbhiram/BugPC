@@ -1164,6 +1164,71 @@
 
     <script src="bugData.js"></script>
     <script>
+        // Custom dropdown functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdowns = document.querySelectorAll('.custom-dropdown');
+            
+            dropdowns.forEach(dropdown => {
+                const header = dropdown.querySelector('.dropdown-header');
+                const options = dropdown.querySelector('.dropdown-options');
+                const select = dropdown.querySelector('select');
+                const optionsList = dropdown.querySelectorAll('.dropdown-option');
+                const searchInput = dropdown.querySelector('.dropdown-search input');
+                
+                function toggleDropdown() {
+                    document.querySelectorAll('.dropdown-options').forEach(opt => {
+                        if (opt !== options) {
+                            opt.classList.remove('show');
+                            opt.parentElement.querySelector('.dropdown-header').classList.remove('open');
+                        }
+                    });
+                    
+                    options.classList.toggle('show');
+                    header.classList.toggle('open');
+                }
+
+                header.addEventListener('click', toggleDropdown);
+                
+                // Handle search functionality for module dropdown
+                if (searchInput) {
+                    searchInput.addEventListener('input', (e) => {
+                        const searchTerm = e.target.value.toLowerCase();
+                        optionsList.forEach(option => {
+                            const text = option.textContent.toLowerCase();
+                            option.style.display = text.includes(searchTerm) ? 'flex' : 'none';
+                        });
+                    });
+                }
+                
+                optionsList.forEach(option => {
+                    option.addEventListener('click', () => {
+                        const value = option.getAttribute('data-value');
+                        const text = option.textContent;
+                        
+                        select.value = value;
+                        header.querySelector('span').textContent = text;
+                        
+                        optionsList.forEach(opt => opt.classList.remove('selected'));
+                        option.classList.add('selected');
+                        
+                        options.classList.remove('show');
+                        header.classList.remove('open');
+                        
+                        select.dispatchEvent(new Event('change'));
+                    });
+                });
+            });
+            
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.custom-dropdown')) {
+                    document.querySelectorAll('.dropdown-options').forEach(options => {
+                        options.classList.remove('show');
+                        options.parentElement.querySelector('.dropdown-header').classList.remove('open');
+                    });
+                }
+            });
+        });
+
         document.addEventListener('DOMContentLoaded', function() {
             const priorityItems = document.querySelectorAll('.priority-item');
             const moduleItems = document.querySelectorAll('.module-item');
@@ -1213,10 +1278,9 @@
                 // Collect HTML/UI bugs
                 moduleBugs.forEach(mod => {
                     if (bugData[currentPriority]['HTML/UI'][mod]) {
-                        htmlBugs.push(...bugData[currentPriority]['HTML/UI'][mod].map((bug, index) => ({
+                        htmlBugs.push(...bugData[currentPriority]['HTML/UI'][mod].map(bug => ({
                             bug,
-                            module: mod,
-                            id: `${currentPriority}-H${index + 1}`
+                            module: mod
                         })));
                     }
                 });
@@ -1224,10 +1288,9 @@
                 // Collect Functional bugs
                 moduleBugs.forEach(mod => {
                     if (bugData[currentPriority]['Functional'][mod]) {
-                        functionalBugs.push(...bugData[currentPriority]['Functional'][mod].map((bug, index) => ({
+                        functionalBugs.push(...bugData[currentPriority]['Functional'][mod].map(bug => ({
                             bug,
-                            module: mod,
-                            id: `${currentPriority}-F${index + 1}`
+                            module: mod
                         })));
                     }
                 });
@@ -1249,7 +1312,7 @@
                             ${htmlBugs[index] ? `
                                 <div class="bug-item">
                                     <span>${htmlBugs[index].bug}${currentModule === 'all' ? ` <strong>(${htmlBugs[index].module})</strong>` : ''}</span>
-                                    <button class="copy-btn" data-bug-id="${htmlBugs[index].id}" data-bug-type="HTML/UI" data-module="${htmlBugs[index].module}" data-bug-text="${htmlBugs[index].bug}">
+                                    <button class="copy-btn" data-bug-id="${currentPriority}-H${index + 1}" data-bug-type="HTML/UI" data-module="${htmlBugs[index].module}">
                                         <i class="fas fa-copy"></i>
                                     </button>
                                 </div>
@@ -1259,7 +1322,7 @@
                             ${functionalBugs[index] ? `
                                 <div class="bug-item">
                                     <span>${functionalBugs[index].bug}${currentModule === 'all' ? ` <strong>(${functionalBugs[index].module})</strong>` : ''}</span>
-                                    <button class="copy-btn" data-bug-id="${functionalBugs[index].id}" data-bug-type="Functional" data-module="${functionalBugs[index].module}" data-bug-text="${functionalBugs[index].bug}">
+                                    <button class="copy-btn" data-bug-id="${currentPriority}-F${index + 1}" data-bug-type="Functional" data-module="${functionalBugs[index].module}">
                                         <i class="fas fa-copy"></i>
                                     </button>
                                 </div>
@@ -1274,10 +1337,10 @@
                         const bugId = this.getAttribute('data-bug-id');
                         const bugType = this.getAttribute('data-bug-type');
                         const module = this.getAttribute('data-module');
-                        const bugText = this.getAttribute('data-bug-text');
-
+                        const bugText = this.parentElement.querySelector('span').textContent.replace(/ \(.+\)$/, ''); // Remove module name in brackets
+                        
                         const copyText = `The bug "${bugText}" is ${currentPriority} ${bugType} bug in the ${module} module. Bug ID: ${bugId}`;
-
+                        
                         navigator.clipboard.writeText(copyText).then(() => {
                             const originalText = this.innerHTML;
                             this.innerHTML = '<i class="fas fa-check"></i>';
