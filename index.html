@@ -1358,7 +1358,7 @@
             }
 
             function showBugDetails(bugId, bugType, module, bugText) {
-                bugDetailsText.textContent = `The bug "${bugText}" is ${currentPriority} ${bugType} bug in the ${module} module. Bug ID: ${bugId}`;
+                bugDetailsText.textContent = `The bug "${bugText}" is ${bugId.split('-')[0]} ${bugType} bug in the ${module} module. Bug ID: ${bugId}`;
                 bugDetailsModal.classList.remove('hidden');
             }
 
@@ -1379,20 +1379,23 @@
                         : [currentModule];
 
                     let currentIndex = 0;
-                    moduleBugs.forEach(mod => {
+                    for (const mod of moduleBugs) {
                         if (bugData[currentPriority][bugType][mod]) {
                             const bugs = bugData[currentPriority][bugType][mod];
                             if (currentIndex + bugs.length > index) {
                                 foundBug = bugs[index - currentIndex];
                                 foundModule = mod;
-                                return;
+                                break;
                             }
                             currentIndex += bugs.length;
                         }
-                    });
+                    }
 
                     if (foundBug) {
                         showBugDetails(searchTerm, bugType, foundModule, foundBug);
+                    } else {
+                        bugDetailsText.textContent = "No matching bug found.";
+                        bugDetailsModal.classList.remove('hidden');
                     }
                 } else {
                     updateBugList();
