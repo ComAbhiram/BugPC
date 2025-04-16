@@ -1140,6 +1140,7 @@
             <nav>
                 <ul>
                     <li><a href="mailto:abhiram@intersmart.in" class="active">Contact</a></li>
+                    <li><a href="https://intersmartqa.github.io/QATabs/" target="_blank">QA Tabs</a></li>
                 </ul>
             </nav>
         </div>
@@ -1448,6 +1449,21 @@
                 sidebar.classList.toggle('open');
             });
         });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const qaTabsLink = document.querySelector('a[href="https://intersmartqa.github.io/QATabs/"]');
+
+            qaTabsLink.addEventListener('click', function (event) {
+                event.preventDefault(); // Prevent the default link behavior
+                const password = prompt('Enter the password to access QA Tabs:');
+                if (password === 'QAhere') {
+                    window.open(this.href, '_blank'); // Open the link in a new tab if the password is correct
+                } else {
+                    alert('Incorrect password. Access denied.');
+                }
+            });
+        });
     </script>
 </body>
 </html>
+``` 
