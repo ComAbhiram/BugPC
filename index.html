@@ -1128,9 +1128,109 @@
         .close-btn:hover {
             color: var(--primary-color);
         }
+
+        .details-btn {
+            background-color: #2d2d2d;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            min-height: 36px;
+        }
+
+        .details-btn:hover {
+            background-color: var(--primary-color);
+            color: #1a1a1a;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .details-btn:active {
+            transform: translateY(0);
+        }
+
+        .details-btn::before {
+            content: '\f129';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            font-size: 0.9rem;
+        }
+
+        .details-btn:hover::before {
+            color: #1a1a1a;
+        }
+
+        /* Responsive styles for the button */
+        @media (max-width: 768px) {
+            .details-btn {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.85rem;
+                min-height: 32px;
+            }
+        }
+
+        /* Spinner Loader Styles */
+        .loader-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 26, 26, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .loader-container.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid var(--primary-color);
+            border-left-color: transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            position: relative;
+        }
+
+        .spinner::after {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            border: 4px solid transparent;
+            border-right-color: var(--primary-color);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: spin 0.5s linear infinite reverse;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
+    <div class="loader-container">
+        <div class="spinner"></div>
+    </div>
     <header>
         <div class="header-content">
             <div class="logo-container">
@@ -1171,7 +1271,6 @@
                 </div>
             </div>
             <div class="modules-menu">
-                <div class="module-item active" data-module="all">All Modules</div>
                 <div class="module-item" data-module="Login">Login</div>
                 <div class="module-item" data-module="Home">Home</div>
                 <div class="module-item" data-module="Dashboard">Dashboard</div>
@@ -1188,6 +1287,17 @@
                 <div class="module-item" data-module="Cart">Cart</div>
                 <div class="module-item" data-module="Search">Search</div>
                 <div class="module-item" data-module="Footer">Footer</div>
+                <!-- New modules -->
+                <div class="module-item" data-module="OTP">OTP</div>
+                <div class="module-item" data-module="Sort">Sort</div>
+                <div class="module-item" data-module="Breadcrumbs">Breadcrumbs</div>
+                <div class="module-item" data-module="Alerts">Alerts</div>
+                <div class="module-item" data-module="Products">Products</div>
+                <div class="module-item" data-module="Filter">Filter</div>
+                <div class="module-item" data-module="Responsive">Responsive</div>
+                <div class="module-item" data-module="Validation">Validation</div>
+                <div class="module-item" data-module="All Forms">All Forms</div>
+                <div class="module-item" data-module="Crawl">Crawl</div>
             </div>
         </div>
         <div class="main-content">
@@ -1206,8 +1316,11 @@
                 <table class="bug-table">
                     <thead>
                         <tr>
-                            <th>HTML/UI Issues</th>
-                            <th class="functional-column">Functional Issues</th>
+                            <th>Bug ID</th>
+                            <th>Bug Name</th>
+                            <th>Type</th>
+                            <th>Module</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody id="bugItems"></tbody>
@@ -1228,240 +1341,142 @@
     <script src="bugData.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const priorityItems = document.querySelectorAll('.priority-item');
-            const moduleItems = document.querySelectorAll('.module-item');
-            const bugTypeBtns = document.querySelectorAll('.bug-type-btn');
-            const bugIdSearch = document.getElementById('bugIdSearch');
+            const bugItems = document.getElementById('bugItems');
             const bugDetailsModal = document.getElementById('bugDetailsModal');
             const bugDetailsText = document.getElementById('bugDetailsText');
             const closeBtn = document.querySelector('.close-btn');
+            const searchInput = document.getElementById('bugIdSearch');
+            const loader = document.querySelector('.loader-container');
+            
             let currentPriority = 'P0';
-            let currentModule = 'all';
             let currentBugType = 'all';
+            let currentModule = 'all';
 
-            function updateBugList() {
-                const bugItems = document.getElementById('bugItems');
-                const functionalColumn = document.querySelector('.functional-column');
-                const htmlColumn = document.querySelector('.bug-table th:first-child');
-                const htmlColumnCells = document.querySelectorAll('.bug-table td:first-child');
-                const functionalColumnCells = document.querySelectorAll('.bug-table td:nth-child(2)');
-                let htmlBugs = [];
-                let functionalBugs = [];
-
-                // Show or hide columns based on the current bug type
-                if (currentBugType === 'HTML/UI') {
-                    functionalColumn.classList.add('hidden');
-                    functionalColumnCells.forEach(cell => cell.classList.add('hidden'));
-                    htmlColumn.classList.remove('hidden');
-                    htmlColumnCells.forEach(cell => cell.classList.remove('hidden'));
-                } else if (currentBugType === 'Functional') {
-                    htmlColumn.classList.add('hidden');
-                    htmlColumnCells.forEach(cell => cell.classList.add('hidden'));
-                    functionalColumn.classList.remove('hidden');
-                    functionalColumnCells.forEach(cell => cell.classList.remove('hidden'));
-                } else {
-                    htmlColumn.classList.remove('hidden');
-                    htmlColumnCells.forEach(cell => cell.classList.remove('hidden'));
-                    functionalColumn.classList.remove('hidden');
-                    functionalColumnCells.forEach(cell => cell.classList.remove('hidden'));
-                }
-
-                // Align table data to the left for all columns
-                document.querySelectorAll('.bug-table td').forEach(td => {
-                    td.style.textAlign = 'left';
-                });
-
-                // Get bugs based on current module selection
-                const moduleBugs = currentModule === 'all' 
-                    ? Object.keys(bugData[currentPriority]['HTML/UI'])
-                    : [currentModule];
-
-                // Collect HTML/UI bugs
-                moduleBugs.forEach(mod => {
-                    if (bugData[currentPriority]['HTML/UI'][mod]) {
-                        htmlBugs.push(...bugData[currentPriority]['HTML/UI'][mod].map((bug, index) => ({
-                            bug,
-                            module: mod,
-                            id: `${currentPriority}-H${index + 1}`
-                        })));
-                    }
-                });
-
-                // Collect Functional bugs
-                moduleBugs.forEach(mod => {
-                    if (bugData[currentPriority]['Functional'][mod]) {
-                        functionalBugs.push(...bugData[currentPriority]['Functional'][mod].map((bug, index) => ({
-                            bug,
-                            module: mod,
-                            id: `${currentPriority}-F${index + 1}`
-                        })));
-                    }
-                });
-
-                // Filter bugs based on current bug type
-                if (currentBugType !== 'all') {
-                    if (currentBugType === 'HTML/UI') {
-                        functionalBugs = [];
-                    } else {
-                        htmlBugs = [];
-                    }
-                }
-
-                // Generate table rows
-                const maxLength = Math.max(htmlBugs.length, functionalBugs.length);
-                bugItems.innerHTML = Array.from({ length: maxLength }, (_, index) => `
-                    <tr>
-                        <td class="${htmlColumn.classList.contains('hidden') ? 'hidden' : ''}">
-                            ${htmlBugs[index] ? `
-                                <div class="bug-item">
-                                    <span>${htmlBugs[index].bug}${currentModule === 'all' ? ` <strong>(${htmlBugs[index].module})</strong>` : ''}</span>
-                                    <button class="copy-btn" data-bug-id="${htmlBugs[index].id}" data-bug-type="HTML/UI" data-module="${htmlBugs[index].module}" data-bug-text="${htmlBugs[index].bug}">
-                                        <i class="fas fa-copy"></i>
-                                    </button>
-                                </div>
-                            ` : ''}
-                        </td>
-                        <td class="${functionalColumn.classList.contains('hidden') ? 'hidden' : ''}">
-                            ${functionalBugs[index] ? `
-                                <div class="bug-item">
-                                    <span>${functionalBugs[index].bug}${currentModule === 'all' ? ` <strong>(${functionalBugs[index].module})</strong>` : ''}</span>
-                                    <button class="copy-btn" data-bug-id="${functionalBugs[index].id}" data-bug-type="Functional" data-module="${functionalBugs[index].module}" data-bug-text="${functionalBugs[index].bug}">
-                                        <i class="fas fa-copy"></i>
-                                    </button>
-                                </div>
-                            ` : ''}
-                        </td>
-                    </tr>
-                `).join('');
-
-                // Add copy functionality
-                document.querySelectorAll('.copy-btn').forEach(btn => {
-                    btn.addEventListener('click', function() {
-                        const bugId = this.getAttribute('data-bug-id');
-                        const bugType = this.getAttribute('data-bug-type');
-                        const module = this.getAttribute('data-module');
-                        const bugText = this.getAttribute('data-bug-text');
-
-                        const copyText = `The bug "${bugText}" is ${currentPriority} ${bugType} bug in the ${module} module. Bug ID: ${bugId}`;
-
-                        navigator.clipboard.writeText(copyText).then(() => {
-                            const originalText = this.innerHTML;
-                            this.innerHTML = '<i class="fas fa-check"></i>';
-                            setTimeout(() => {
-                                this.innerHTML = originalText;
-                            }, 2000);
-                        });
-                    });
-                });
-
-                // Show the table
-                document.querySelector('.bug-table-container').style.display = 'block';
+            function showLoader() {
+                loader.classList.add('show');
             }
 
-            function showBugDetails(bugId, bugType, module, bugText) {
-                bugDetailsText.textContent = `The bug "${bugText}" is ${bugId.split('-')[0]} ${bugType} bug in the ${module} module. Bug ID: ${bugId}`;
+            function hideLoader() {
+                loader.classList.remove('show');
+            }
+
+            function updateBugList() {
+                showLoader();
+                bugItems.innerHTML = '';
+                
+                setTimeout(() => {  // Simulate loading time
+                    const priority = window.bugData[currentPriority];
+                    
+                    if (!priority) {
+                        hideLoader();
+                        return;
+                    }
+
+                    Object.entries(priority).forEach(([type, modules]) => {
+                        if (currentBugType !== 'all' && type !== currentBugType) return;
+                        
+                        Object.entries(modules).forEach(([module, bugs]) => {
+                            // Skip if module doesn't match current selection
+                            if (currentModule !== 'all' && module.toLowerCase() !== currentModule.toLowerCase()) return;
+                            
+                            bugs.forEach(bug => {
+                                const row = document.createElement('tr');
+                                row.innerHTML = `
+                                    <td>${bug.id}</td>
+                                    <td>${bug.name}</td>
+                                    <td>${type}</td>
+                                    <td>${module}</td>
+                                    <td>
+                                        <button class="details-btn" data-id="${bug.id}" data-name="${bug.name}" data-type="${type}" data-module="${module}">
+                                            Details
+                                        </button>
+                                    </td>
+                                `;
+                                
+                                const detailsBtn = row.querySelector('.details-btn');
+                                detailsBtn.addEventListener('click', function() {
+                                    showBugDetails(bug.id, bug.name, type, module);
+                                });
+                                
+                                bugItems.appendChild(row);
+                            });
+                        });
+                    });
+
+                    hideLoader();
+                }, 500);  // Add a slight delay to show the loader
+            }
+
+            function showBugDetails(id, name, type, module) {
+                bugDetailsText.textContent = `Bug ID: ${id}\nBug Name: "${name}"\nType: ${type}\nModule: ${module}`;
                 bugDetailsModal.classList.remove('hidden');
             }
 
-            bugIdSearch.addEventListener('input', function() {
-                const searchTerm = this.value.trim().toUpperCase();
-                let foundBug = null;
-                let foundModule = null;
-                let bugType = null;
-
-                if (searchTerm.match(/^P[0-4]-[HF]\d+$/)) {
-                    const [priority, typeIndex] = searchTerm.split('-');
-                    bugType = typeIndex.startsWith('H') ? 'HTML/UI' : 'Functional';
-                    const index = parseInt(typeIndex.substring(1)) - 1;
-
-                    currentPriority = priority;
-                    const moduleBugs = currentModule === 'all'
-                        ? Object.keys(bugData[currentPriority][bugType])
-                        : [currentModule];
-
-                    let currentIndex = 0;
-                    for (const mod of moduleBugs) {
-                        if (bugData[currentPriority][bugType][mod]) {
-                            const bugs = bugData[currentPriority][bugType][mod];
-                            if (currentIndex + bugs.length > index) {
-                                foundBug = bugs[index - currentIndex];
-                                foundModule = mod;
-                                break;
-                            }
-                            currentIndex += bugs.length;
-                        }
-                    }
-
-                    if (foundBug) {
-                        showBugDetails(searchTerm, bugType, foundModule, foundBug);
-                    } else {
-                        bugDetailsText.textContent = "No matching bug found.";
-                        bugDetailsModal.classList.remove('hidden');
-                    }
-                } else {
-                    updateBugList();
-                }
+            // Search functionality
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.trim().toLowerCase();
+                const rows = bugItems.querySelectorAll('tr');
+                
+                rows.forEach(row => {
+                    const bugId = row.querySelector('td').textContent.toLowerCase();
+                    const shouldShow = bugId.includes(searchTerm);
+                    row.style.display = shouldShow ? '' : 'none';
+                });
             });
 
-            closeBtn.addEventListener('click', function() {
+            // Module selection
+            document.querySelectorAll('.module-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    document.querySelectorAll('.module-item').forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                    currentModule = this.getAttribute('data-module');
+                    showLoader();
+                    setTimeout(() => {
+                        updateBugList();
+                    }, 300);
+                });
+            });
+
+            // Priority selection
+            document.querySelectorAll('.priority-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    document.querySelectorAll('.priority-item').forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                    currentPriority = this.getAttribute('data-priority');
+                    showLoader();
+                    setTimeout(() => {
+                        updateBugList();
+                    }, 300);
+                });
+            });
+
+            // Bug type selection
+            document.querySelectorAll('.bug-type-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.bug-type-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    currentBugType = this.getAttribute('data-type');
+                    showLoader();
+                    setTimeout(() => {
+                        updateBugList();
+                    }, 300);
+                });
+            });
+
+            // Modal handlers
+            closeBtn.addEventListener('click', () => {
                 bugDetailsModal.classList.add('hidden');
             });
 
-            window.addEventListener('click', function(event) {
+            window.addEventListener('click', (event) => {
                 if (event.target === bugDetailsModal) {
                     bugDetailsModal.classList.add('hidden');
                 }
             });
 
-            priorityItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    priorityItems.forEach(i => i.classList.remove('active'));
-                    this.classList.add('active');
-                    currentPriority = this.getAttribute('data-priority');
-                    updateBugList();
-                });
-            });
-
-            moduleItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    moduleItems.forEach(i => i.classList.remove('active'));
-                    this.classList.add('active');
-                    currentModule = this.getAttribute('data-module');
-                    updateBugList();
-                });
-            });
-
-            bugTypeBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    bugTypeBtns.forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                    currentBugType = this.getAttribute('data-type');
-                    updateBugList();
-                });
-            });
-        });
-
-        document.addEventListener('DOMContentLoaded', function () {
-            const menuToggle = document.querySelector('.menu-toggle');
-            const sidebar = document.querySelector('.sidebar');
-
-            menuToggle.addEventListener('click', function () {
-                sidebar.classList.toggle('open');
-            });
-        });
-
-        document.addEventListener('DOMContentLoaded', function () {
-            const qaTabsLink = document.querySelector('a[href="https://intersmartqa.github.io/QATabs/"]');
-
-            qaTabsLink.addEventListener('click', function (event) {
-                event.preventDefault(); // Prevent the default link behavior
-                const password = prompt('Enter the password to access QA Tabs:');
-                if (password === 'QAhere') {
-                    window.open(this.href, '_blank'); // Open the link in a new tab if the password is correct
-                } else {
-                    alert('Incorrect password. Access denied.');
-                }
-            });
+            // Show loader on initial load
+            showLoader();
+            updateBugList();
         });
     </script>
 </body>
