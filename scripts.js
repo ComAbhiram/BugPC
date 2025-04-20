@@ -42,6 +42,36 @@ function populateModulesTable(modules) {
     });
 }
 
+// Utility function to normalize strings
+function normalizeString(str) {
+    return str.trim().toLowerCase();
+}
+
+// Utility function to get bug details by ID
+function getBugDetailsById(bugId) {
+    const [priority, type, module, index] = bugId.split('-');
+    const bugType = type === 'H' ? 'HTML/UI' : 'Functional';
+    const normalizedPriority = priority.toUpperCase();
+    const normalizedModule = module.toLowerCase();
+    const bugIndex = parseInt(index) - 1;
+
+    if (
+        bugData[normalizedPriority] &&
+        bugData[normalizedPriority][bugType] &&
+        bugData[normalizedPriority][bugType][normalizedModule]
+    ) {
+        const bugs = bugData[normalizedPriority][bugType][normalizedModule];
+        if (bugIndex >= 0 && bugIndex < bugs.length) {
+            return {
+                bugText: bugs[bugIndex],
+                module: normalizedModule.charAt(0).toUpperCase() + normalizedModule.slice(1),
+                bugType,
+            };
+        }
+    }
+    return null;
+}
+
 // Example usage: Populate table with modules
 const modules = ['Module 1', 'Module 2', 'Module 3'];
 populateModulesTable(modules);
