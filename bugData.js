@@ -3608,7 +3608,7 @@ if (typeof window === 'undefined' || !window.bugData) {
     P3: {
         "HTML/UI": {
             login: [
-                { id: "P3-H-LOGIN-1", name: "Login button minor color inconsistency" },
+                { id: "P3-H-LOGIN-1", name: "No spacing between field name and error on mobile" },
                 { id: "P3-H-LOGIN-2", name: "Login form minor padding issue" },
                 { id: "P3-H-LOGIN-3", name: "Login text minor font rendering issue" },
                 { id: "P3-H-LOGIN-4", name: "Login input minor border inconsistency" },
