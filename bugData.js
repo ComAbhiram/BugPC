@@ -3806,7 +3806,7 @@ if (typeof window === 'undefined' || !window.bugData) {
                 { id: "P3-H-VALIDATION-2", name: "Validation text minor padding issue" },
                 { id: "P3-H-VALIDATION-3", name: "Validation font minor rendering issue" },
                 { id: "P3-H-VALIDATION-4", name: "Validation border minor issue" },
-                { id: "P3-H-VALIDATION-5", name: "Validation hover minor issue" },
+                { id: "P3-H-VALIDATION-5", name: "No spacing between field name and error on mobile" },
             ],
             all_forms: [
                 { id: "P3-H-ALL_FORMS-1", name: "No spacing between field name and error on mobile" },
