@@ -903,9 +903,9 @@ if (typeof window === 'undefined' || !window.bugData) {
                 ]
                 },
                 Functional: {
-                    products: [
-                    { id: "P0-F-PRODUCTS-1", name: "Product Offer Visible on Frontend Without Admin Approval" },
-                          ],
+                    products: 
+                    [{ id: "P0-F-PRODUCTS-1", name: "Product Offer Visible on Frontend Without Admin Approval" },],
+                    
                 responsive: [
                     { id: "P0-F-RESPONSIVE-1", name: "Mobile layout fails to load" },
                     { id: "P0-F-RESPONSIVE-2", name: "Tablet view crashes on resize" },
